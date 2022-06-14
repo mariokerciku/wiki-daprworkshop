@@ -11,3 +11,4 @@ The files for the labs for this workshop can be found at https://github.com/Xpir
 - Lab 2 - [Adding Dapr sidecars](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-2:-Adding-Dapr-sidecars)
 - Lab 3 - [Using Service Invocation building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-3:-Using-Service-Invocation-block)
 - Lab 4 - [Using PubSub building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-4:-Using-PubSub-building-block)
+- Lab 5 - [Using binding components](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-5:-Using-binding-components)
