@@ -27,13 +27,15 @@ If you are not using GitHub Codespaces you will probably use one of the availabl
 > #### Important!
 > You must first checkout the `Start` branch to get started with the following labs. The main branch has the full solution corresponding to the result of your work at the end of the workshop after having completed all labs. 
 
+Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
+
 ### Using Visual Studio 2022
 Open the globoticket-dapr.sln solution file in Visual Studio 2022. You can inspect the solution as usual. 
 Run the application by settings the Docker Compose project as the startup file and pressing F5.
 
 The application should build the images and start the container composition using the docker-compose.yml and docker-compose.override.yml files. After a successful launch Visual Studio should open a browser automatically. If not, navigate to http://localhost:5002/. 
 
-Continue in the section "Exploring GloboTicket".
+Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
  
 ### Using Visual Studio Code
 Open the root folder of the cloned repository in Visual Studio Code. You can run the application by opening a Terminal window and executing 
