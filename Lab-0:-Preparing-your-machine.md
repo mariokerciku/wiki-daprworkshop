@@ -2,6 +2,9 @@ In this lab you are going to prepare your machine for this workshop. This assume
 
 Alternatively you can run all labs from a browser using GitHub Codespaces. This requires you to have an active Team plan that allows you to use CodeSpaces. It incurs cost for compute and storage. If you plan to use a codespace, you can skip to [Running from GitHub Codespaces](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Preparing-your-machine#running-from-github-codespaces)
 
+# Running from your local development machine
+You can run all labs from your own development machine. In order to do so you need to install quite a bit of tooling. Some of it might already be installed if you are using your regular development environment. Check each of the following items and skip the ones that are already installed.
+
 ## Install Windows Terminal 
 Open Microsoft Store and search for Windows Terminal or follow this link:
 https://www.microsoft.com/store/productId/9N0DX20HK701
