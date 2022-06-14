@@ -1,6 +1,6 @@
 In this lab you are going to prepare your machine for this workshop. This assumes you want to use your own development machine to work on the labs.
 
-Alternatively you can run all labs from a browser using GitHub Codespaces. This requires you to have an active Team plan that allows you to use CodeSpaces. It incurs cost for compute and storage. 
+Alternatively you can run all labs from a browser using GitHub Codespaces. This requires you to have an active Team plan that allows you to use CodeSpaces. It incurs cost for compute and storage. If you plan to use a codespace, you can skip to [Running from GitHub Codespaces](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Preparing-your-machine#running-from-github-codespaces)
 
 ## Install Windows Terminal 
 Open Microsoft Store and search for Windows Terminal or follow this link:
@@ -24,7 +24,7 @@ Visual Studio Code is available for all three platforms Windows, Linux and MacOS
 
 <img src="https://user-images.githubusercontent.com/5504642/173638826-9b27c4ed-b500-4156-8009-f0cad3138b3d.png" width="300" />
 
-##Add Visual Studio Code extensions
+## Add Visual Studio Code extensions
 If you have installed Visual Studio Code, you can add extensions. A couple of Visual Studio Code extensions are required to assist you during the labs. You can install them before the workshop or at the start of labs that require them.
 
 ## Install Docker Desktop 
@@ -45,11 +45,11 @@ You will use a local single-node Kubernetes cluster in the labs before venturing
 ## Run Kubernetes in Docker Desktop
 You can enable Kubernetes in the settings of Docker Desktop. Open the Docker Desktop UI by double-clicking on the tray icon for Docker Desktop:
 
-![image](https://user-images.githubusercontent.com/5504642/173639225-150d5946-c697-4e85-bebf-e428399a9184.png)
+<img src="https://user-images.githubusercontent.com/5504642/173639225-150d5946-c697-4e85-bebf-e428399a9184.png" width="300" />
 
 Alternatively, you can start Docker Desktop again.
 
-![image](https://user-images.githubusercontent.com/5504642/173639404-767524be-81fc-45b4-86f5-5c5024a4d023.png)
+<img src="https://user-images.githubusercontent.com/5504642/173639404-767524be-81fc-45b4-86f5-5c5024a4d023.png" width="600" />
 
 ## Alternative: install Minikube
 Minikube is a standalone version for single-node Kubernetes clusters in a development scenario. You do not need it if you have enabled the Docker Desktop Kubernetes cluster in the previous steps. If you choose not to use Docker Desktop or the Kubernetes cluster it provides, you should install Minikube to be able to work with Kubernetes on your development machine. 
@@ -67,11 +67,11 @@ If you have Chocolatey on your Windows machine, it is as simple as `choco instal
 ## Install Dapr
 Dapr is a runtime that is installed through the command-line interface. You can download the CLI installation files from: https://docs.dapr.io/getting-started/install-dapr-cli/
 
-![image](https://user-images.githubusercontent.com/5504642/173639631-00402a9a-0c86-4e07-a10a-7138689a0fc7.png)
+<img src="https://user-images.githubusercontent.com/5504642/173639631-00402a9a-0c86-4e07-a10a-7138689a0fc7.png" width="300" />
 
 Install the Dapr CLI and check that it works correctly by typing `dapr` in a terminal window.
 
-![image](https://user-images.githubusercontent.com/5504642/173639679-3e810077-5572-4a12-8292-e5dc9dfd1361.png)
+<img src="https://user-images.githubusercontent.com/5504642/173639679-3e810077-5572-4a12-8292-e5dc9dfd1361.png" width="600" />
 
 If the Dapr CLI installation is succesfull, you can install the Dapr runtime by executing 
 
@@ -79,22 +79,22 @@ If the Dapr CLI installation is succesfull, you can install the Dapr runtime by 
 dapr init
 ```
 
-## Running from GitHub Codespaces
+# Running from GitHub Codespaces
 You can use GitHub Codespaces to run your development machine from the cloud. This way you do not have to setup anything on your development machine other than a modern browser. 
 
 Go to https://github.com/XpiritCommunityEvents/DaprWorkshop to find the repository for the Dapr workshop.
 On this page you should find a drop down with '<> Code' on it. Select the Codespaces tab and create a new codespace by pressing the Create button. 
 
-![image](https://user-images.githubusercontent.com/5504642/173656582-7d0ed2d7-a749-4e86-803e-52e5e25a06db.png)
+<img src="https://user-images.githubusercontent.com/5504642/173656582-7d0ed2d7-a749-4e86-803e-52e5e25a06db.png" width="300" />
 
 If you want more control over the options you can open the dropdown and select the second option for configuring advanced settings. In most cases the default of 2 cores and 4 GB of RAM should suffice.
 
-![image](https://user-images.githubusercontent.com/5504642/173656802-6ada9384-d26b-4b56-aa95-56f1ba04385e.png)
+<img src="https://user-images.githubusercontent.com/5504642/173656802-6ada9384-d26b-4b56-aa95-56f1ba04385e.png" width="300" />
 
 Alternatively you can select one of the existing codespaces if you happen to return and continue work on a previous codespace session. 
 You can also remove these instances, change the machine type later on or export changes inside the Codespace to a branch. You can get to manage your Codespaces in more detail by following the the link to Manage All in the first screenshot.
 
-![image](https://user-images.githubusercontent.com/5504642/173656910-f15be80c-f6c5-478f-ba62-2838e492b2e1.png)
+<img src="https://user-images.githubusercontent.com/5504642/173656910-f15be80c-f6c5-478f-ba62-2838e492b2e1.png" width="800" />
 
 ## Using Minikube inside Codespaces
 The labs in this workshop can be performed on your own laptop or inside a GitHub Codespace. There is one additional preparation step needed in the case of running Minikube inside a Codespace. 
@@ -128,4 +128,4 @@ https://dotnet.microsoft.com/en-us/download/dotnet
 
 Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the .csproj files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
 
-![image](https://user-images.githubusercontent.com/5504642/173657260-a86bbd58-67d6-49f0-ace2-585bf880364e.png)
+<img src="https://user-images.githubusercontent.com/5504642/173657260-a86bbd58-67d6-49f0-ace2-585bf880364e.png" width="500" />
