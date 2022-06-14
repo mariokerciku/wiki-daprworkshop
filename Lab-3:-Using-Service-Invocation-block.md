@@ -49,22 +49,24 @@ For the second method of calling a different service we will use the `DaprClient
 
 Open `Program.cs` and add the `DaprClient` to the services, right after the call to `AddControllersWithViews`.
 
-```
+```C#
 builder.Services.AddControllersWithViews();
 builder.Services.AddDaprClient();
 ```
 
-Remove the call to AddHttpClient for the IOrderSubmissionService and add the following line to do regular injection of HttpOrderSubmissionService.
+Remove the call to `AddHttpClient` for the `IOrderSubmissionService` and add the following line to do regular injection of `HttpOrderSubmissionService`.
 
+```C#
 builder.Services.AddTransient<IOrderSubmissionService, HttpOrderSubmissionService>();
-
-Next, open the Services/Ordering/HttpOrderSubmissionService.cs file and locate the constructor.
-
-Change the injected client argument type from HttpClient to DaprClient. Also change the type of the corresponding field. Again, add the namespace for Dapr.Client.
-
-Inside the SubmitOrder method you can find the call to PostAsJsonAsync from the original HttpClient. Now that the client is a DaprClient object we can change the invocation of the ordering service to be 
-
 ```
+
+Next, open the `frontend/Services/Ordering/HttpOrderSubmissionService.cs` file and locate the constructor.
+
+Change the injected client argument type from `HttpClient` to `DaprClient`. Also change the type of the corresponding field. Again, add the namespace for `Dapr.Client`.
+
+Inside the `SubmitOrder` method you can find the call to `PostAsJsonAsync` from the original `HttpClient`. Now that the client is a `DaprClient` object we can change the invocation of the ordering service to be 
+
+```C#
 await orderingClient.InvokeMethodAsync<OrderForCreation>("ordering", "order", order);  
 ```
 
