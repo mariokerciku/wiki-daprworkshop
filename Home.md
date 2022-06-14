@@ -12,3 +12,4 @@ The files for the labs for this workshop can be found at https://github.com/Xpir
 - Lab 3 - [Using Service Invocation building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-3:-Using-Service-Invocation-block)
 - Lab 4 - [Using PubSub building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-4:-Using-PubSub-building-block)
 - Lab 5 - [Using binding components](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-5:-Using-binding-components)
+- Lab 6 - [Using Secret Store building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-6:-Using-Secret-Store-building-block)
