@@ -27,6 +27,13 @@ Visual Studio Code is available for all three platforms Windows, Linux and MacOS
 ## Add Visual Studio Code extensions
 If you have installed Visual Studio Code, you can add extensions. A couple of Visual Studio Code extensions are required to assist you during the labs. You can install them before the workshop or at the start of labs that require them.
 
+| Extension | URL |
+| :----------- | :----------- |
+| Remote WSL | https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl |
+| Docker | https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker |
+| Kubernetes | https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools |
+| Dapr | https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-dapr |
+
 ## Install Docker Desktop 
 Docker Desktop is a popular choice to interact with containers on a host machine. It uses a daemon engine and offers a REST API and a CLI to issue commands to the containers.
 Follow the instructions at these locations for your OS:
