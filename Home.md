@@ -6,6 +6,6 @@ The lab uses an existing .NET based application for a ticket selling webapplicat
 
 The files for the labs for this workshop can be found at https://github.com/XpiritCommunityEvents/DaprWorkshop. 
 
-Lab 0 - Preparing your machine (can be done before the workshop starts)
+- Lab 0 - [Preparing your machine](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Preparing-your-machine) (can be done before the workshop starts)
 Lab 1 - Inspecting GloboTicket
 Lab 2 - Adding Dapr sidecars
