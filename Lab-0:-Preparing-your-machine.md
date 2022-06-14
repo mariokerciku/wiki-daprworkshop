@@ -64,20 +64,15 @@ Kubernetes uses an command-line interface to interact with the cluster. It is ca
 
 If you have Chocolatey on your Windows machine, it is as simple as `choco install kubernetes-cli`. Installing Chocolatey is straightforward and you can find the instructions here: https://chocolatey.org/install
 
-## Install Dapr
-Dapr is a runtime that is installed through the command-line interface. You can download the CLI installation files from: https://docs.dapr.io/getting-started/install-dapr-cli/
-
-<img src="https://user-images.githubusercontent.com/5504642/173639631-00402a9a-0c86-4e07-a10a-7138689a0fc7.png" width="300" />
-
-Install the Dapr CLI and check that it works correctly by typing `dapr` in a terminal window.
-
-<img src="https://user-images.githubusercontent.com/5504642/173639679-3e810077-5572-4a12-8292-e5dc9dfd1361.png" width="600" />
-
-If the Dapr CLI installation is succesfull, you can install the Dapr runtime by executing 
+## Cloning lab files
+The workshop uses an existing .NET application and has some resource files you need during the labs. 
+You will need to clone the Git repository found at https://github.com/XpiritCommunityEvents/DaprWorkshop.
+Create a place where you want to store the files, such as `C:\Sources\Workshops` or `~/workshops`. In your terminal window, make sure you are in the correct folder and execute the Git clone command:
 
 ```cmd
-dapr init
+git clone https://github.com/XpiritCommunityEvents/DaprWorkshop.git
 ```
+You should get a subdirectory call `DaprWorkshop` inside your source folder. Go ahead and take a look at the contents. 
 
 # Running from GitHub Codespaces
 You can use GitHub Codespaces to run your development machine from the cloud. This way you do not have to setup anything on your development machine other than a modern browser. 
@@ -92,12 +87,12 @@ If you want more control over the options you can open the dropdown and select t
 <img src="https://user-images.githubusercontent.com/5504642/173656802-6ada9384-d26b-4b56-aa95-56f1ba04385e.png" width="300" />
 
 Alternatively you can select one of the existing codespaces if you happen to return and continue work on a previous codespace session. 
-You can also remove these instances, change the machine type later on or export changes inside the Codespace to a branch. You can get to manage your Codespaces in more detail by following the the link to Manage All in the first screenshot.
+You can also remove these instances, change the machine type later on or export changes inside the codespace to a branch. You can get to manage your codespaces in more detail by following the link to `Manage All` in the first screenshot.
 
 <img src="https://user-images.githubusercontent.com/5504642/173656910-f15be80c-f6c5-478f-ba62-2838e492b2e1.png" width="800" />
 
 ## Using Minikube inside Codespaces
-The labs in this workshop can be performed on your own laptop or inside a GitHub Codespace. There is one additional preparation step needed in the case of running Minikube inside a Codespace. 
+The labs in this workshop can be performed on your own laptop or inside a GitHub Codespaces. There is one additional preparation step needed in the case of running Minikube inside a codespace.
 
 If you want to prepare ahead of time, you can execute this statement. In a later lab you will learn more about the details.
 
@@ -106,15 +101,20 @@ eval $(minikube docker-env) # for WSL
 & minikube -p minikube docker-env --shell powershell | Invoke-Expression # for PowerShell 
 ```
 
-## Cloning lab files
-The workshop uses an existing .NET application and has some resource files you need during the labs. 
-You will need to clone the Git repository found at https://github.com/Xpirit-Netherlands/dapr-workshop.
-Create a place where you want to store the files, such as C:\Sources\Workshops or ~/workshops. In your terminal window, make sure you are in the correct folder and execute the Git clone command:
+# Install Dapr
+Regardless of your setup, you will need to install the Dapr CLI and initialize the runtime. Dapr is a runtime that is installed through the command-line interface. You can download the CLI installation files from https://docs.dapr.io/getting-started/install-dapr-cli/
+
+<img src="https://user-images.githubusercontent.com/5504642/173639631-00402a9a-0c86-4e07-a10a-7138689a0fc7.png" width="300" />
+
+Install the Dapr CLI and check that it works correctly by typing `dapr` in a terminal window.
+
+<img src="https://user-images.githubusercontent.com/5504642/173639679-3e810077-5572-4a12-8292-e5dc9dfd1361.png" width="600" />
+
+If the Dapr CLI installation is succesfull, you can install the Dapr runtime by executing: 
 
 ```cmd
-git clone https://github.com/XpiritCommunityEvents/DaprWorkshop.git
+dapr init
 ```
-You should get a subdirectory call DaprWorkshop inside your source folder. Go ahead and take a look at the contents. 
 
 # For the adventurous
 You might already be very familiar with Docker and Kubernetes. If that is the case you can choose to follow the labs with something a little less mainstream. 
@@ -123,9 +123,8 @@ You might already be very familiar with Docker and Kubernetes. If that is the ca
 If you want to try something other than Docker Desktop to manage containers you can also use Podman. Follow the instructions at https://podman.io/getting-started/installation to install the daemonless alternative to Docker. Podman also offers pods instead of only containers. It resembles pods from Kubernetes and allows having multiple containers inside a pod.
 
 ## Install .NET preview version (for the adventurous)
-You can also choose to install a preview version of the next .NET in case you want to experiment. You can find the latest releases, including the upcoming ones at:
-https://dotnet.microsoft.com/en-us/download/dotnet
+You can also choose to install a preview version of the next .NET in case you want to experiment. You can find the latest releases, including the upcoming ones at: https://dotnet.microsoft.com/en-us/download/dotnet
 
-Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the .csproj files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
+Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the `.csproj` files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
 
 <img src="https://user-images.githubusercontent.com/5504642/173657260-a86bbd58-67d6-49f0-ace2-585bf880364e.png" width="500" />
