@@ -1,4 +1,4 @@
-Welcome to the labs for the workshop "Dapr for building distributed .NET applications"
+# Welcome to the workshop labs for "Dapr for building distributed .NET applications"
 
 In these labs you will learn the basics of Dapr and how to use it to build distributed applications using .NET and C#. 
 
