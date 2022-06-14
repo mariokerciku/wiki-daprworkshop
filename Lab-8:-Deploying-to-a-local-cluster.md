@@ -8,3 +8,24 @@ Verify that your cluster is running and that you are connected to it with the Ku
 ```cmd
 kubectl config get-contexts
 ```
+
+The output various per cluster type.
+
+![image](https://user-images.githubusercontent.com/5504642/173692060-36dab09d-8ef9-4279-a6b1-125a5c4afc9e.png)
+![image](https://user-images.githubusercontent.com/5504642/173692846-0da66222-e740-42ed-aae8-99e40340c8ba.png)
+
+Also, you can check using the Visual Studio Code extension for Kubernetes to see if you are connected correctly.
+
+![image](https://user-images.githubusercontent.com/5504642/173692328-1abcd1c8-dffe-481a-a2f5-ddf19911d617.png)
+![image](https://user-images.githubusercontent.com/5504642/173692437-7894eead-386a-4838-acfc-d7329253fcf0.png)
+
+## Preparing cluster to use Dapr
+Prepare your cluster by installing the Dapr runtime and control plane. Verify that Dapr CLI and runtime are installed correctly first.
+```cmd
+dapr --version
+```
+![image](https://user-images.githubusercontent.com/5504642/173692831-719ed42f-a460-4d51-b1f9-bb90176704e9.png)
+
+Run initialization for Dapr on local Kubernetes cluster
+dapr init -k
+ 
