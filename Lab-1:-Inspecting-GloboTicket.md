@@ -21,13 +21,13 @@ You should see a window appear after starting the application composition using 
 
 ![image](https://user-images.githubusercontent.com/5504642/173662514-8cf8bb49-f81b-4c6d-8b75-e7b988a4c1e2.png)
 
+Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
+
 ## Working with Visual Studio 2022 or Visual Studio Code
 If you are not using GitHub Codespaces you will probably use one of the available versions of Visual Studio to work with the code from your local file system. Make sure you have cloned the Git repository for GloboTicket. 
 
 > #### Important!
-> You must first checkout the `Start` branch to get started with the following labs. The main branch has the full solution corresponding to the result of your work at the end of the workshop after having completed all labs. 
-
-Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
+> You must first checkout the `start` branch to get started with the following labs. The main branch has the full solution corresponding to the result of your work at the end of the workshop after having completed all labs. 
 
 ### Using Visual Studio 2022
 Open the globoticket-dapr.sln solution file in Visual Studio 2022. You can inspect the solution as usual. 
