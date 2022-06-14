@@ -31,6 +31,7 @@ cd ..
 ```
 Now that we have the Dapr client as a means to interact with the sidecars, you can change the `HttpClient` used to call into the catalog service. Instead of calling the service directly, we can use the `DaprClient` to construct a special `HttpClient` that is preconfigured to use the sidecar.
 
+## Replace use of HTTPClient
 Replace the call to `AddHttpClient` for the event catalog with the following code:
 
 ```C#
@@ -45,6 +46,7 @@ using Dapr.Client;
 
 Notice how the Dapr client will do the discovery of the catalog service based on the Dapr application ID `catalog`. This line will make sure that every time a `IEventCatalogService` is injected, the concrete implementation will be an `EventCatalogService` with an `HttpClient` configured by Dapr.
 
+## Replace calls to other services
 For the second method of calling a different service we will use the `DaprClient`. To be able to use this client, we need to register it in the dependency injection system at startup.
 
 Open `Program.cs` and add the `DaprClient` to the services, right after the call to `AddControllersWithViews`.
