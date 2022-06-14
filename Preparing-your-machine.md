@@ -1,0 +1,131 @@
+In this lab you are going to prepare your machine for this workshop. This assumes you want to use your own development machine to work on the labs.
+
+Alternatively you can run all labs from a browser using GitHub Codespaces. This requires you to have an active Team plan that allows you to use CodeSpaces. It incurs cost for compute and storage. 
+
+## Install Windows Terminal 
+Open Microsoft Store and search for Windows Terminal or follow this link:
+https://www.microsoft.com/store/productId/9N0DX20HK701
+
+## Windows Subsystem for Linux
+On Windows 10/11, you need to enable the Windows Subsystem for Linux (WSL), by following the steps described here: https://docs.microsoft.com/en-us/windows/wsl/install
+
+We recommend you add the Ubuntu and Debian distro from the Microsoft Store:
+- https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6
+- https://apps.microsoft.com/store/detail/debian/9MSVKQC78PK6
+
+If you cannot do this, you will use a Linux Virtual Machine to run Linux containers on Windows later.
+
+## Visual Studio as an IDE
+The most preferable Integrated Development Environment (IDE) is Visual Studio 2022 if you are using Windows. For MacOS you can use Visual Studio for Mac. You can find all editions, including a free Community edition here: https://visualstudio.microsoft.com/downloads/
+
+<img src="https://user-images.githubusercontent.com/5504642/173638496-43f1a8d9-4c8f-4c30-966c-50e04f5da792.png" width="600" />
+
+Visual Studio Code is available for all three platforms Windows, Linux and MacOS. On Linux Visual Studio Code is recommended, as there is no Visual Studio for Linux available. 
+
+<img src="https://user-images.githubusercontent.com/5504642/173638826-9b27c4ed-b500-4156-8009-f0cad3138b3d.png" width="300" />
+
+##Add Visual Studio Code extensions
+If you have installed Visual Studio Code, you can add extensions. A couple of Visual Studio Code extensions are required to assist you during the labs. You can install them before the workshop or at the start of labs that require them.
+
+## Install Docker Desktop 
+Docker Desktop is a popular choice to interact with containers on a host machine. It uses a daemon engine and offers a REST API and a CLI to issue commands to the containers.
+Follow the instructions at these locations for your OS:
+- Windows: https://docs.docker.com/desktop/windows/install/
+- Mac: https://docs.docker.com/desktop/mac/install/
+- Linux: https://docs.docker.com/desktop/linux/install/
+
+Verify your installation by running:
+```cmd
+docker run --rm hello-world
+```
+
+## Enabling Kubernetes
+You will use a local single-node Kubernetes cluster in the labs before venturing off into a cloud hosted Kubernetes. You can run either Minikube or use Docker Dekstop to run a local cluster.
+
+## Run Kubernetes in Docker Desktop
+You can enable Kubernetes in the settings of Docker Desktop. Open the Docker Desktop UI by double-clicking on the tray icon for Docker Desktop:
+
+![image](https://user-images.githubusercontent.com/5504642/173639225-150d5946-c697-4e85-bebf-e428399a9184.png)
+
+Alternatively, you can start Docker Desktop again.
+
+![image](https://user-images.githubusercontent.com/5504642/173639404-767524be-81fc-45b4-86f5-5c5024a4d023.png)
+
+## Alternative: install Minikube
+Minikube is a standalone version for single-node Kubernetes clusters in a development scenario. You do not need it if you have enabled the Docker Desktop Kubernetes cluster in the previous steps. If you choose not to use Docker Desktop or the Kubernetes cluster it provides, you should install Minikube to be able to work with Kubernetes on your development machine. 
+
+Follow the instructions at https://minikube.sigs.k8s.io/docs/start/ to install Minikube on your machine. Remember to start the Minikube installation using the `start` command:
+```cmd
+minikube start
+```
+
+## Installing Kubernetes CLI
+Kubernetes uses an command-line interface to interact with the cluster. It is called `kubectl`, pronounced "kube-cuttle" and you can download and install it from this link: https://kubernetes.io/docs/tasks/tools/
+
+If you have Chocolatey on your Windows machine, it is as simple as `choco install kubernetes-cli`. Installing Chocolatey is straightforward and you can find the instructions here: https://chocolatey.org/install
+
+## Install Dapr
+Dapr is a runtime that is installed through the command-line interface. You can download the CLI installation files from: https://docs.dapr.io/getting-started/install-dapr-cli/
+
+![image](https://user-images.githubusercontent.com/5504642/173639631-00402a9a-0c86-4e07-a10a-7138689a0fc7.png)
+
+Install the Dapr CLI and check that it works correctly by typing `dapr` in a terminal window.
+
+![image](https://user-images.githubusercontent.com/5504642/173639679-3e810077-5572-4a12-8292-e5dc9dfd1361.png)
+
+If the Dapr CLI installation is succesfull, you can install the Dapr runtime by executing 
+
+```cmd
+dapr init
+```
+
+## Running from GitHub Codespaces
+You can use GitHub Codespaces to run your development machine from the cloud. This way you do not have to setup anything on your development machine other than a modern browser. 
+
+Go to https://github.com/XpiritCommunityEvents/DaprWorkshop to find the repository for the Dapr workshop.
+On this page you should find a drop down with '<> Code' on it. Select the Codespaces tab and create a new codespace by pressing the Create button. 
+
+![image](https://user-images.githubusercontent.com/5504642/173656582-7d0ed2d7-a749-4e86-803e-52e5e25a06db.png)
+
+If you want more control over the options you can open the dropdown and select the second option for configuring advanced settings. In most cases the default of 2 cores and 4 GB of RAM should suffice.
+
+![image](https://user-images.githubusercontent.com/5504642/173656802-6ada9384-d26b-4b56-aa95-56f1ba04385e.png)
+
+Alternatively you can select one of the existing codespaces if you happen to return and continue work on a previous codespace session. 
+You can also remove these instances, change the machine type later on or export changes inside the Codespace to a branch. You can get to manage your Codespaces in more detail by following the the link to Manage All in the first screenshot.
+
+![image](https://user-images.githubusercontent.com/5504642/173656910-f15be80c-f6c5-478f-ba62-2838e492b2e1.png)
+
+## Using Minikube inside Codespaces
+The labs in this workshop can be performed on your own laptop or inside a GitHub Codespace. There is one additional preparation step needed in the case of running Minikube inside a Codespace. 
+
+If you want to prepare ahead of time, you can execute this statement. In a later lab you will learn more about the details.
+
+```cmd
+eval $(minikube docker-env) # for WSL
+& minikube -p minikube docker-env --shell powershell | Invoke-Expression # for PowerShell 
+```
+
+## Cloning lab files
+The workshop uses an existing .NET application and has some resource files you need during the labs. 
+You will need to clone the Git repository found at https://github.com/Xpirit-Netherlands/dapr-workshop.
+Create a place where you want to store the files, such as C:\Sources\Workshops or ~/workshops. In your terminal window, make sure you are in the correct folder and execute the Git clone command:
+
+```cmd
+git clone https://github.com/XpiritCommunityEvents/DaprWorkshop.git
+```
+You should get a subdirectory call DaprWorkshop inside your source folder. Go ahead and take a look at the contents. 
+
+# For the adventurous
+You might already be very familiar with Docker and Kubernetes. If that is the case you can choose to follow the labs with something a little less mainstream. 
+
+## Podman as Docker Desktop replacement
+If you want to try something other than Docker Desktop to manage containers you can also use Podman. Follow the instructions at https://podman.io/getting-started/installation to install the daemonless alternative to Docker. Podman also offers pods instead of only containers. It resembles pods from Kubernetes and allows having multiple containers inside a pod.
+
+## Install .NET preview version (for the adventurous)
+You can also choose to install a preview version of the next .NET in case you want to experiment. You can find the latest releases, including the upcoming ones at:
+https://dotnet.microsoft.com/en-us/download/dotnet
+
+Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the .csproj files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
+
+![image](https://user-images.githubusercontent.com/5504642/173657260-a86bbd58-67d6-49f0-ace2-585bf880364e.png)
