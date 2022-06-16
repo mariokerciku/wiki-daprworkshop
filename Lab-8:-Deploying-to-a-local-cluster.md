@@ -144,9 +144,10 @@ In PowerShell you need to do a bit more work to decode the base64 encoded passwo
 
 ```powershell
 $REDIS_PASSWORD = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String(kubectl get secret --namespace default daprworkshop-redis -o jsonpath="{.data.redis-password})
+```
 
 Verify that the Redis password was set correctly by calling `printenv REDIS_PASSWORD` for Linux or `$env:REDIS_PASSWORD` for PowerShell.
-In our case we will not really need the password, as it is added as a secret to the cluster. We can refer to the secret when we need it, avoiding having a plain-text password somewhere in your configuration.
+In our case we will not really need the password, as it is added as a secret to the cluster. Initially, you will use the password, but later replace this with a reference to the secret. This latter approach avoids having a plain-text password somewhere in your configuration.
 
 # Dapr components
 At this point you are ready to register the Dapr components. For now we will use the 'default' namespace for convenience.
@@ -166,7 +167,7 @@ kubectl apply -f .\email.yaml
 ```
 
 ## Statestore and pubsub
-First, change passwords in `components/kubernetes/redis-statestore.yaml` and deploy/redis-pubsub.yaml to Redis password from the last step in the Redis installation.
+First, change passwords in `components/kubernetes/redis-statestore.yaml` and `components/kubernetes/redis-pubsub.yaml` to Redis password from the last step in the Redis installation.
 
 ```yaml
 apiVersion: dapr.io/v1alpha1
@@ -183,8 +184,8 @@ spec:
     value: N8IVeZRQki # Change this password
 ```
 
-The redisHost is 'daprworkshop-redis-master:6379' referring to the name found earlier.
-Deploy the two components for pubsub and statestore:
+The redisHost is `daprworkshop-redis-master:6379` referring to the name found earlier.
+Deploy the two components for `pubsub` and `statestore`:
 
 ```cmd
 kubectl apply -f .\redis-pubsub.yaml
@@ -197,3 +198,40 @@ kubectl apply -f .\appconfig.yaml
 ```
 
 This would be a good time to look at the Dapr dashboard again.
+
+![image](https://user-images.githubusercontent.com/5504642/174189748-f759559d-9232-4acb-be2a-d054e3ca1a3c.png)
+
+## Secret store for database
+Kubernetes has its own secret store that you can use to store the secrets in your composition. Create a new secret with a different value for the fictitious connection string, so you can see the effect later on.
+
+```cmd
+kubectl create secret generic catalogconnectionstring --from-literal=catalogconnectionstring="Event Catalog Connection String from Kubernetes"
+kubectl apply -f .\kubernetes-secretstore.yaml
+```
+
+# Application containers
+You are all set up to start deploying the pods for each of the 3 containers `ordering`, `frontend` and `catalog`.
+Build a `Release` version of the code and create the Docker images. 
+
+```cmd
+dotnet build -c Release globoticket-dapr.sln
+```
+An alternative would be to use Docker Compose to perform the build, based on the `docker-compose.yml` and `docker-compose.override.yml` files:
+```cmd
+docker-compose build 
+```
+Remember that you can combine building and starting (upping) a composition using `docker-compose up --build`.
+
+## Deploying pods 
+The final step to get to a complete solution is to 
+```
+docker tag catalog local/globoticket-dapr-catalog:latest
+kubectl apply -f .\catalog.yaml
+
+docker tag ordering local/globoticket-dapr-ordering:latest
+kubectl apply -f .\ordering.yaml
+
+docker tag ordering local/globoticket-dapr-frontend:latest
+kubectl apply -f .\frontend.yaml
+
+
