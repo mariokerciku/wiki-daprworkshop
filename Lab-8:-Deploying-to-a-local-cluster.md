@@ -221,10 +221,34 @@ An alternative would be to use Docker Compose to perform the build, based on the
 docker-compose build 
 ```
 Remember that you can combine building and starting (upping) a composition using `docker-compose up --build`.
+This creates 
 
 ## Deploying pods 
-The final step to get to a complete solution is to 
+The final step to get to a complete solution is to tag the container images that were created with a registry name at the front. To indicate that we will get the images from the local image store, we will name the registry `local`.
+Examine the contents of `catalog.yaml`:
+
 ```
+  template:
+    metadata:
+      labels:
+        app: catalog
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "catalog"
+        dapr.io/app-port: "80"
+        dapr.io/config: "appconfig"
+    spec:
+      containers:
+      - name: catalog
+        image: local/globoticket-dapr-catalog:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
+```
+
+Notice how the definition of the deployment refers to `local/globoticket-dap-catalog:latest` and never pulls an image from a registry, as they should already be available locally because of the build. 
+
+```cmd
 docker tag catalog local/globoticket-dapr-catalog:latest
 kubectl apply -f .\catalog.yaml
 
@@ -233,5 +257,6 @@ kubectl apply -f .\ordering.yaml
 
 docker tag ordering local/globoticket-dapr-frontend:latest
 kubectl apply -f .\frontend.yaml
+```
 
-
+Check your dashboard and verify that everything runs correctly. Visit the GloboTicket website at http://localhost:8080 and try to order tickets.
