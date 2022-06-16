@@ -88,4 +88,4 @@ In later labs you will copy component yaml files into the components folder. Rep
 ![image](https://user-images.githubusercontent.com/5504642/173665452-f56ffbb0-470f-4092-8872-360f28bd3a6d.png)
 
 ## Running your application with Dapr sidecars
-Try your new container composition and see if everything works as expected. You can check these URLs to see if Zipkin is working correctly: http://localhost:9412
+Try your new container composition and see if everything works as expected. You can check this URL to see if Zipkin is working correctly: http://localhost:9412
