@@ -73,8 +73,8 @@ The command gives output similar to:
 
 ```
 eyJhbGciOiJSUzI1NiIsImtpZCI6InI0U29nakdwNmR1T3RLVzBRTVBUZUxGSWhtYl9ZRExsNXpBYmNvdjl0MWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZWZhdWx0LXRva2VuLXY5cnhjIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImRlZmF1bHQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIwOGExMDBiZC1kZjlhLTRmM2YtYjExYS0xMDZmZTkyZDI4NzEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06ZGVmYXVsdCJ9.lNaY8rnoZv0BTNoI-F7fj-CtxtWF_fulymFL1k2y0BpgvPRfojsKy7HBzBi9qnUwipLK46AksCOzgg0Z3DbpF9BN_4VIBQmfJ4_yH1v8TYqC7LSriyIYEST_hJIRCQbJ919CXxSxW-Teo8mJ3mZo9PheBiARLas3P-e2e_xu14_Q5DnvjCcmgxTpPBEBhi5G-4O7fDybVljZxgeBQM65ODCd5pTjPp_SPrFykw2qWCHnEl28q5wUvtGYlXle9aAN1arZq1O2_h98LAYUUryYzGNEp4Ma7CIdytf1nwwpSaAmRUAC4
-Copy and paste the token value into the login field that reads Enter token and click Sign in. You should see the dashboard appear.
 ```
+Copy and paste the token value into the login field that reads Enter token and click `Sign in`. You should see the dashboard appear.
 
 If all goes well, you will be presented with the dashboard:
 ![image](https://user-images.githubusercontent.com/5504642/174171219-a02c68d7-204f-4a4e-a4a1-28fb79fb6650.png)
@@ -109,7 +109,7 @@ You can see how the SMTP service is being hosted inside the cluster by finding t
 ```cmd
 kubectl get pods # Find the ID of the maildev pod
 kubectl logs <podid_maildev>
-```cmd
+```
 
 As you can see, it uses two ports for SMTP and HTTP traffic. You must expose these and port-forward the HTTP port to view the maildev UI.
 ```cmd
@@ -134,3 +134,66 @@ helm install daprworkshop-redis bitnami/redis
 Notice how the Helm release of Redis is called daprworkshop-redis:
 ![image](https://user-images.githubusercontent.com/5504642/174171912-132da2de-3223-4658-aa97-9684e406b114.png)
 
+It uses the default port of 6379. Should you need the password that was created for the Redis service, you can find it using the instructions in the output. On a Linux bash run the command:
+
+```cmd
+export REDIS_PASSWORD=$(kubectl get secret --namespace default daprworkshop-redis -o jsonpath="{.data.redis-password}" | base64 --decode)
+```
+
+In PowerShell you need to do a bit more work to decode the base64 encoded password:
+
+```powershell
+$REDIS_PASSWORD = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String(kubectl get secret --namespace default daprworkshop-redis -o jsonpath="{.data.redis-password})
+
+Verify that the Redis password was set correctly by calling `printenv REDIS_PASSWORD` for Linux or `$env:REDIS_PASSWORD` for PowerShell.
+In our case we will not really need the password, as it is added as a secret to the cluster. We can refer to the secret when we need it, avoiding having a plain-text password somewhere in your configuration.
+
+# Dapr components
+At this point you are ready to register the Dapr components. For now we will use the 'default' namespace for convenience.
+
+## Binding to CRON schedule
+The `lab-resources` directory contains a subdirectory called `kubernetes`. Copy the directory into the `components` folder located at the root of your Git repository. Next, apply the Kubernetes manifest files.
+
+```cmd
+cd components/kubernetes
+kubectl apply -f .\cron.yaml
+```
+
+## Binding to SMTP 
+Repeat the same for the SMTP binding component. 
+```cmd
+kubectl apply -f .\email.yaml
+```
+
+## Statestore and pubsub
+First, change passwords in `components/kubernetes/redis-statestore.yaml` and deploy/redis-pubsub.yaml to Redis password from the last step in the Redis installation.
+
+```yaml
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+spec:
+  type: pubsub.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    value: daprworkshop-redis-master:6379
+  - name: redisPassword
+    value: N8IVeZRQki # Change this password
+```
+
+The redisHost is 'daprworkshop-redis-master:6379' referring to the name found earlier.
+Deploy the two components for pubsub and statestore:
+
+```cmd
+kubectl apply -f .\redis-pubsub.yaml
+kubectl apply -f .\redis-statestore.yaml
+```
+
+Finally, deploy the Dapr configuration for this application: 
+```cmd
+kubectl apply -f .\appconfig.yaml
+```
+
+This would be a good time to look at the Dapr dashboard again.
