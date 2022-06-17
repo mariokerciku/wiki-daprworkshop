@@ -104,7 +104,7 @@ First, expose port 3500 of the frontend sidecar outside of the composition. To a
 Restart your composition and navigate to the exposed port 3500. In GitHub Codespaces and Visual Studio Code you can use the Ports window. On a local development machine you can simply go to http://localhost:3500. The browser will show an error initially. Add a relative URL of `v1.0/invoke/catalog/method/event` to the URL. 
 
 ```
-http://<codespace-url or localhost>/v1.0/invoke/catalog/method/event
+http://<codespace-url -or- localhost:3500>/v1.0/invoke/catalog/method/event
 ```
 
 This is the sidecar API to do service invocation. Its format uses the name of the other service `catalog` and the method `event` to invoke. You should get a response with the event catalog in JSON format.
@@ -125,7 +125,7 @@ This is the sidecar API to do service invocation. Its format uses the name of th
 Another way to invoke a different service is to pretend you are calling the service directly. In our case we would call the frontend sidecar as if it is the catalog service. This means that the URL needs to be changed to `/event`, the controller endpoint of the catalog web API. The base address of the URL does not change and remains the frontend sidecar URL.
 
 ```
-http://<codespace-url or localhost>/event 
+http://<codespace-url -or- localhost:3500>/event 
 (with a HTTP header dapr-app-id : event)
 ```
 
