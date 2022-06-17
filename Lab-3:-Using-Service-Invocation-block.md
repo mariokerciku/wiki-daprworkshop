@@ -5,10 +5,10 @@ Open the `Program.cs` file and locate the section that adds two HTTP client regi
 
 ```C#
 builder.Services.AddHttpClient<IEventCatalogService, EventCatalogService>(
-    (provider, client) =>
-        client.BaseAddress =
-            new Uri(provider.GetService<IConfiguration>()?["ApiConfigs:EventCatalog:Uri"] ?? 
-            throw new InvalidOperationException("Missing config")));
+    (provider, client) =>{
+        client.BaseAddress = new Uri(provider.GetService<IConfiguration>()?["ApiConfigs:EventCatalog:Uri"] ?? throw new InvalidOperationException("Missing config"));
+    });
+
 builder.Services.AddHttpClient<IOrderSubmissionService, HttpOrderSubmissionService>(
     (provider, client) => {
         client.BaseAddress = new Uri(provider.GetService<IConfiguration>()?["ApiConfigs:Ordering:Uri"] ?? throw new InvalidOperationException("Missing config"));
