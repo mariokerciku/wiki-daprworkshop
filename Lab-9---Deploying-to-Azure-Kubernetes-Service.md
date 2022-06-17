@@ -124,3 +124,27 @@ Also, you can check the status of Dapr from the command-line:
 dapr status -k
 ```
 ![image](https://user-images.githubusercontent.com/5504642/174283547-77e6155b-12ed-4bee-8260-5b1515d9e0e7.png)
+
+# Installing dependencies 
+With the cluster setup, it is time to install the dependencies for Dapr and our application. Go through similar steps as for your local cluster to install the dependencies to the AKS cluster. Below you can find the short instructions. You can refer to the previous lab for details. 
+
+## Distributed tracing with Zipkin
+Install the pod with Zipkin and open a forwarded port to the service:
+```cmd
+kubectl create deployment zipkin --image openzipkin/zipkin
+kubectl expose deployment zipkin --type ClusterIP --port 9411
+kubectl port-forward svc/zipkin 9413:9411
+```
+
+## SMTP mail server with MailDev
+```cmd
+kubectl create deployment maildev --image maildev/maildev 
+```
+
+## State store and pub/sub with Redis
+```cmd
+helm install daprworkshop-redis bitnami/redis
+```
+
+This time you will not need to get the password from the Redis installation. Instead we will use the Kubernetes secret that was automatically created and refer to that in the component definitions of `statestore` and `pubsub` later on.
+
