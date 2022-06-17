@@ -148,3 +148,18 @@ helm install daprworkshop-redis bitnami/redis
 
 This time you will not need to get the password from the Redis installation. Instead we will use the Kubernetes secret that was automatically created and refer to that in the component definitions of `statestore` and `pubsub` later on.
 
+# Dapr components
+We need to register the Dapr components again. We will still use the 'default' namespace for convenience. In a production cluster you could also isolate the solution into a separate Kubernetes namespace. 
+
+Open a terminal and navigate to the `lab-resources/azure` directory. You do not need to copy the files as you will only use these for Refer to the previous lab for details. The short steps are listed below:
+
+```cmd
+cd lab-resources/azure
+kubectl apply -f .\cron.yaml
+kubectl apply -f .\email.yaml
+kubectl apply -f .\redis-pubsub.yaml
+kubectl apply -f .\redis-statestore.yaml
+kubectl apply -f .\appconfig.yaml
+```
+
+Look at Dapr dashboard again.
