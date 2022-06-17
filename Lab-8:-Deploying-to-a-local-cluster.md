@@ -110,6 +110,7 @@ You can see how the SMTP service is being hosted inside the cluster by finding t
 kubectl get pods # Find the ID of the maildev pod
 kubectl logs <podid_maildev>
 ```
+![image](https://user-images.githubusercontent.com/5504642/174284468-2aa93b55-71b9-4c2a-b9c8-d218969cc198.png)
 
 As you can see, it uses two ports for SMTP and HTTP traffic. You must expose these and port-forward the HTTP port to view the maildev UI.
 ```cmd
