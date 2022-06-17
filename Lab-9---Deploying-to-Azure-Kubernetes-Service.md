@@ -104,7 +104,7 @@ Verify that the Dapr CLI and runtime are installed.
 dapr --version
 ```
 
-![image](https://user-images.githubusercontent.com/5504642/174283221-e4b1e30f-6776-4265-93e4-90f7282c4089.png)
+<img src="https://user-images.githubusercontent.com/5504642/174283221-e4b1e30f-6776-4265-93e4-90f7282c4089.png" width="300" />
 
 Run the initialization of Dapr on your AKS cluster. 
 ```cmd
@@ -163,3 +163,70 @@ kubectl apply -f .\appconfig.yaml
 ```
 
 Look at Dapr dashboard again.
+<img src="https://user-images.githubusercontent.com/5504642/174286507-e3a035b5-d071-4302-add7-909931d17960.png" width="500" />
+
+# Application containers
+The Dapr dependencies are now in place. Now you can deploy the pods for each of the three containers `ordering`, `frontend` and `catalog`.
+
+This time we will need a container registry where the three images are pushed. This way the AKS cluster can reach the registry to pull the images. Having local images will not work. You can create your own private container registry in Azure. Pick a unique name for your registry and set it in the first line of the following fragment:
+
+```cmd
+$REGISTRY_NAME = <your-container-registry> 
+az acr create --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --sku Basic
+az acr login --name $REGISTRY_NAME
+```
+![image](https://user-images.githubusercontent.com/5504642/174288495-7956fe8d-9b1a-4da9-9a7b-6894583294cd.png)
+
+You can check in the Azure portal whether the Azure Container Registry (ACR) was created successfully.
+
+## Create container images
+Since we now have a container registry, it is required to change the name of the container images to include the registry name. We can use an environment variable to help is out. Set the DOCKER_REGISTRY variable to be the `id` of your ACR instance.
+
+```cmd
+$LOGIN_SERVER=az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv
+$env:DOCKER_REGISTRY=$LOGIN_SERVER
+```
+This environment variable is used when building the container images as specified in the respective `Dockerfile` files. Check the beginning of one of these files to see how it is being used.
+
+Create the images again by building a `Release` version of the code 
+
+```cmd
+docker-compose build 
+docker images
+```
+and verify in the output of the last command that the new images are available, with the name of the registry prepended, for example `daprworkshopcontainerregistry.azurecr.io/globoticket-dapr-catalog:latest`.
+
+## Pushing images to container registry
+It is now easy to push the images to the registry. You are already logged in and the containers have the `latest` tag already. You can change the tag to be a specific version if you want to.
+```cmd
+docker push $LOGIN_SERVER/globoticket-dapr-catalog:latest
+docker push $LOGIN_SERVER/globoticket-dapr-ordering:latest
+docker push $LOGIN_SERVER/globoticket-dapr-frontend:latest
+```
+Go to the container registry in your Azure portal and check in the repositories section if the images have been pushed successfully. You can also check using Visual Studio Code or GitHub Codespaces by using the Registries section of the Docker extension.
+
+![image](https://user-images.githubusercontent.com/5504642/174289523-c71c8e5f-a787-4bb9-bde9-95ac38e75b66.png)
+
+## Deploying pods to AKS
+The AKS cluster needs to be able to pull images from the private container registry. You can give the AKS cluster access to the container registry 
+```cmd
+$REGISTRY_ID = az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv
+az aks update --name DaprWorkshopCluster --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+```
+This allows us to deploy the pods for the catalog, ordering and frontend components of the GloboTicket application.
+```cmd
+kubectl apply -f .\catalog.yaml
+kubectl apply -f .\ordering.yaml
+kubectl apply -f .\frontend.yaml
+```
+Follow the deployment of the pods and services that are defined in the deployment manifests. After all is running correctly, find the public IP address for the cluster:
+
+```cmd
+kubectl get svc frontend -o jsonpath="{.status.loadBalancer.ingress[*].ip}"
+```
+
+Visit the website URL at the IP address you found and using port 8080, for example `http://<your-cluster-ipaddress>:8080/`.
+If all went well, you should be treated with a working GloboTicket website. In case of errors, examine the logs of the pods and its containers to find out what went wrong and correct it.
+
+
+
