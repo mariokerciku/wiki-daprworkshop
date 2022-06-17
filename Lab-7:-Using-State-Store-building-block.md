@@ -10,13 +10,14 @@ To leverage the state store we need to be able to interact with the store by mea
 ## Changing shopping basket implementation
 Copy the complete folder named `DaprStateStore` including its contents from the `lab-resources` folder into the `frontend/Services/ShoppingBasket` folder. There should be two files inside with the implementation we need.
 
-The `DaprClientStateStoreShoppingBasket` class is a new implementation of the `IShoppingBasket` interface. By changing the mapping of `IShoppingBasketService` from `InMemoryShoppingBasket` to `DaprClientStateStoreShoppingBasket` in the dependency injection system of .NET, the injected object of type `IShoppingBasketService` will be the new Dapr based implementation.
-Find the line that maps a singleton object of type InMemoryShoppingBasket:
+The `DaprClientStateStoreShoppingBasket` class is a new implementation of the `IShoppingBasketService` interface. By changing the mapping of `IShoppingBasketService` from `InMemoryShoppingBasket` to `DaprClientStateStoreShoppingBasket` in the dependency injection system of .NET, the injected object of type `IShoppingBasketService` will be the new Dapr based implementation.
+Find the line that maps a singleton object of type `InMemoryShoppingBasket`:
+
 ```C#
 builder.Services.AddSingleton<IShoppingBasketService, InMemoryShoppingBasketService>();
 ```
 
-and change it to be a mapping of transient lifetime object of type `DaprClientStateStoreShoppingBasket`:
+and change it to be a mapping for transient lifetime objects of type `DaprClientStateStoreShoppingBasket`:
 
 ```C#
 builder.Services.AddTransient<IShoppingBasketService, DaprClientStateStoreShoppingBasket>();
