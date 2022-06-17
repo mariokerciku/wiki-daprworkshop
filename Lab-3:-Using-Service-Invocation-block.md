@@ -71,5 +71,5 @@ Inside the `SubmitOrder` method you can find the call to `PostAsJsonAsync` from 
 ```C#
 await orderingClient.InvokeMethodAsync<OrderForCreation>("ordering", "order", order);  
 ```
-
+Also, remove the code that validated the results from the invocation to the original HttPClient, we don't need this anymore.
 Run the application again and place an order to see if the new invocation via the sidecar works. Verify the logs to see whether the order was processed.
