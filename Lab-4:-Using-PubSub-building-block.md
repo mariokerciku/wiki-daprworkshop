@@ -11,7 +11,7 @@ time="2022-06-14T12:31:45.925497486Z" level=info msg="component loaded. name: pu
 ```
 
 ## Publish events using Dapr
-Next, you are going to change the publishing side in the **frontend **service. For this, a new implementation for `IOrderSubmissionService` is created. Copy and paste the `HttpOrderSubmissionService.cs` file and rename it to `PubSubOrderSubmissionService.cs`.
+Next, you are going to change the publishing side in the **frontend** service. For this, a new implementation for `IOrderSubmissionService` is created. Copy and paste the `HttpOrderSubmissionService.cs` file and rename it to `PubSubOrderSubmissionService.cs`.
 
 Open the file and rename the class to be `PubSubOrderSubmissionService`, including the constructor.
 Locate the call to `InvokeMethodAsync` and replace that line with:
