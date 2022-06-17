@@ -57,7 +57,12 @@ The SMTP server implementation for the development environment on your laptop is
 
 Notice how the container is using port 1025 and 1080 inside the container, and is exposed via the same ports outside of the composition. 
 
-Start the orchestration for the Globoticket solution.
+Start the orchestration for the Globoticket solution, with a rebuild of the containers. You need to do this whenever you change code or configuration or add files to any of the .NET projects.
+
+```cmd
+docker-compose up --build
+```
+
 Open the URL for the maildev UI at http://localhost:1080 and see that there are no current emails listed.
 
 ![image](https://user-images.githubusercontent.com/5504642/173679790-0849cf86-3fbd-44d8-9226-896c259cbd3f.png)
