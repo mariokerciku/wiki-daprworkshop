@@ -72,7 +72,7 @@ Place an order and verify that the mail arrives at the SMTP mail server:
 ![image](https://user-images.githubusercontent.com/5504642/173679843-9366ae3c-e55d-47b4-8187-36f900dbbee1.png)
 
 ## CRON binding for scheduling
-The **catalog **service has a scheduled task to calculate a special offer ticket price at an interval of every 5 minutes. You can easily create a binding that uses a cron job schedule to execute a method in a controller. Whenever the cron job trigger based on the elapsed time, the Dapr cron binding will make a call to the container it accompanies on a well-known endpoint based on the name of the cron component.
+The **catalog ** service has a scheduled task to calculate a special offer ticket price at an interval of every 5 minutes. You can easily create a binding that uses a cron job schedule to execute a method in a controller. Whenever the cron job trigger based on the elapsed time, the Dapr cron binding will make a call to the container it accompanies on a well-known endpoint based on the name of the cron component.
 
 Copy the `cron.yaml` file from `lab-resources` to `components/docker-compose`. Open the file to inspect the `bindings.cron` type component is defined in it. The schedule is defined at `"@every 5m"` and scoped to the catalog service.
 Whenever the period of the schedule is passed, the sidecar will issue an HTTP POST request to the `/scheduled` endpoint of the service it is connected to. In this case it is only the catalog sidecar that has the cron binding, so an endpoint of the service.
