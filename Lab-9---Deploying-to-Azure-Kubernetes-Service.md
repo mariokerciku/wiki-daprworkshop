@@ -78,4 +78,49 @@ az aks get-credentials -n $CLUSTER_NAME -g $RESOURCEGROUP -a
 This command requires administrator priviliges (which you have to your own cluster) to get the credentials needed to communicate with the cluster. These will be stored in the `config` file in your `~/.kube` or `%USERPROFILE%\.kube` folder. 
 
 Examine the Kubernetes tab in Visual Studio Code or GitHub Codespaces. 
-Richt-click new node on clusters and select "Set as Current Cluster"
+
+![image](https://user-images.githubusercontent.com/5504642/174282252-7c9eb514-54a2-4ad2-a716-3e354bf7c6b8.png)
+
+If the new node is not already the current active cluster, you can richt-click on the new node in the `clusters` section and select "Set as Current Cluster". Alternatively, you can select the cluster as the current in your configuration by running:
+
+```cmd
+kubectl config use-context $CLUSTER_NAME
+```
+
+To make absolutely sure you have the new cluster selected, verify that the correct context is being used:
+
+```cmd
+kubectl config get-contexts
+```
+
+![image](https://user-images.githubusercontent.com/5504642/174282949-307db163-17ee-498f-81e8-57d7637734d7.png)
+
+## Install Dapr runtime and control plane on AKS
+From now on you will repeat a number of steps you have also done on the local cluster. Things will be familiar as the location of the cluster is reasonably transparent.
+
+Verify that the Dapr CLI and runtime are installed.
+
+```cmd
+dapr --version
+```
+
+![image](https://user-images.githubusercontent.com/5504642/174283221-e4b1e30f-6776-4265-93e4-90f7282c4089.png)
+
+Run the initialization of Dapr on your AKS cluster. 
+```cmd
+dapr init -k --wait
+```
+
+![image](https://user-images.githubusercontent.com/5504642/174283359-1c164950-0fc3-49e4-9bee-f721ae6991e9.png)
+
+Again, you can use the dashboard to see whether the Dapr control plane was installed and initialized successfully by running the dashboard.
+```cmd
+dapr dashboard -k -p 8180
+```
+This should open a browser and automatically navigate to http://localhost:8180/overview.
+
+Also, you can check the status of Dapr from the command-line:
+```cmd
+dapr status -k
+```
+![image](https://user-images.githubusercontent.com/5504642/174283547-77e6155b-12ed-4bee-8260-5b1515d9e0e7.png)
