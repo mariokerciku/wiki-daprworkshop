@@ -11,7 +11,7 @@ time="2022-06-14T12:31:45.925497486Z" level=info msg="component loaded. name: pu
 ```
 
 ## Publish events using Dapr
-Next, you are going to change the publishing side in the frontend service. For this, a new implementation for `IOrderSubmissionService` is created. Copy and paste the `HttpOrderSubmissionService.cs` file and rename it to `PubSubOrderSubmissionService.cs`.
+Next, you are going to change the publishing side in the **frontend **service. For this, a new implementation for `IOrderSubmissionService` is created. Copy and paste the `HttpOrderSubmissionService.cs` file and rename it to `PubSubOrderSubmissionService.cs`.
 
 Open the file and rename the class to be `PubSubOrderSubmissionService`, including the constructor.
 Locate the call to `InvokeMethodAsync` and replace that line with:
@@ -29,7 +29,7 @@ builder.Services.AddTransient<IOrderSubmissionService, PubSubOrderSubmissionServ
 ```
 
 ## Subscribing to events using Dapr
-In the project for the ordering service you also need to add the NuGet package for `Dapr.AspNetCore`. 
+In the project for the **ordering** service you also need to add the NuGet package for `Dapr.AspNetCore`. 
 Next, you should add middleware in the HTTP pipeline to unwrap the CloudEvents envelope from the incoming message over the topic. 
 Add a call to `UseCloudEvents` before adding the routing middleware.
 
