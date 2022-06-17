@@ -1,6 +1,6 @@
 In this lab you will deploy the GloboTicket application to a Kubernetes cluster running in the cloud. The lab assumes you have an Azure subscription and are able to use Azure Kubernetes Service (AKS). You can get a free trial Azure account at https://azure.microsoft.com/en-us/free/.
 
-# Preparations in Azure
+# Setting up your Azure environment
 You will be using PowerShell to run most of the CLI commands for Azure. Make sure you have installed the Azure CLI by running the `az` command from a terminal window. If you are using GitHub Codespaces this should already be installed. If you are doing this lab on your own machine, it might not be installed. If so, follow the instructions at https://docs.microsoft.com/en-us/cli/azure/install-azure-cli to install the right Azure CLI for your setup.
 
 ## Creating Azure resources
@@ -126,7 +126,7 @@ dapr status -k
 ```
 ![image](https://user-images.githubusercontent.com/5504642/174283547-77e6155b-12ed-4bee-8260-5b1515d9e0e7.png)
 
-# Installing dependencies 
+## Installing dependencies 
 With the cluster setup, it is time to install the dependencies for Dapr and our application. Go through similar steps as for your local cluster to install the dependencies to the AKS cluster. Below you can find the short instructions. You can refer to the previous lab for details. 
 
 - Distributed tracing with Zipkin
@@ -150,7 +150,7 @@ helm install daprworkshop-redis bitnami/redis
 ```
 This time you will not need to get the password from the Redis installation. Instead we will use the Kubernetes secret that was automatically created and refer to that in the component definitions of `statestore` and `pubsub` later on.
 
-# Dapr components
+# Deploy Dapr components
 We need to register the Dapr components again. We will still use the 'default' namespace for convenience. In a production cluster you could also isolate the solution into a separate Kubernetes namespace. 
 
 Open a terminal and navigate to the `lab-resources/azure` directory. You do not need to copy the files as you will only use these for Refer to the previous lab for details. The short steps are listed below:
@@ -165,6 +165,7 @@ kubectl apply -f .\appconfig.yaml
 ```
 
 Look at Dapr dashboard again.
+
 <img src="https://user-images.githubusercontent.com/5504642/174286507-e3a035b5-d071-4302-add7-909931d17960.png" width="500" />
 
 # Application containers
@@ -229,6 +230,3 @@ kubectl get svc frontend -o jsonpath="{.status.loadBalancer.ingress[*].ip}"
 
 Visit the website URL at the IP address you found and using port 8080, for example `http://<your-cluster-ipaddress>:8080/`.
 If all went well, you should be treated with a working GloboTicket website. In case of errors, examine the logs of the pods and its containers to find out what went wrong and correct it.
-
-
-
