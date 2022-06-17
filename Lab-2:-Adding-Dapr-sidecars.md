@@ -126,7 +126,7 @@ Another way to invoke a different service is to pretend you are calling the serv
 
 ```
 http://<codespace-url -or- localhost:3500>/event 
-(with a HTTP header dapr-app-id : event)
+(with a HTTP header dapr-app-id : catalog)
 ```
 
 Use your favorite tool to inject a header into the HTTP request to the URL. You can use the `ModHeader` browser extension, Postman or any other tool. Add a header named `dapr-app-id` and give it the value `catalog`. Make a new request and see how you will get the same result.  
