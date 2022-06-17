@@ -5,7 +5,7 @@ Make sure you have familiarized yourself with the contents of the Docker Compose
 
 The first step is to add Dapr sidecars as companions of the three containers ordering, catalog and frontend. The Dapr sidecars are additional containers that also run as part of the container composition using Docker Compose.
 
-Add a sidecar for the catalog service in the same docker-compose.override.yml file. Even though the place is not relevant inside a docker-compose yml file, it might be best to place this fragment directly below the definition of the catalog service.
+Add a sidecar for the catalog service in the same `docker-compose.yml` file. Even though the place is not relevant inside a Docker Compose yaml file, it might be best to place this fragment directly below the definition of the catalog service.
 
 ```yaml
   catalog-dapr:
@@ -31,7 +31,7 @@ Another important thing to note is that the network mode of the sidecar is defin
 
 Repeat creating the sidecar definitions for both the frontend and ordering service, making sure that the 5 occurences of the service name (`catalog` in the fragment shown) are replaced to be 'frontend' and 'ordering' respectively.
 
-Additional dependencies for Dapr
+## Additional dependencies for Dapr
 Since Dapr requires a number of extra dependencies for a state store, pub sub and telemetry, simple versions such as Redis Cache and Zipkin are used for local development. 
 You will add these to the docker-compose override file as well, below the sidecar definitions.
 
@@ -59,7 +59,7 @@ You can find the file `config.yaml` in the folder lab-resources located in the r
 
 Create a new directory in the root of your solution and name it `components`. Inside it create another folder `docker-compose`. In later labs we will create more directories inside the `components`, for local and cloud clusters.
 
-The `docker-compose` will contain the configuration for now. Copy the config.yaml file from the lab-resources to the folder. This should be enough for now.
+The `docker-compose` will contain the configuration for now. Copy the `config.yaml` file from the lab-resources to the folder. This should be enough for now.
 
 ## Start composition including Dapr
 Now it is time to start your composition for the GloboTicket application again. Use the same method as in the previous lab to start it.
@@ -89,3 +89,33 @@ In later labs you will copy component yaml files into the components folder. Rep
 
 ## Running your application with Dapr sidecars
 Try your new container composition and see if everything works as expected. You can check this URL to see if Zipkin is working correctly: http://localhost:9412
+
+## Testing the sidecars
+Even though the Dapr sidecars are not doing anything just yet, they are there to help running the application. The three services do not use the sidecars for now. That will be part of the next lab. However, we can already try out the service invocation through sidecars. You will call one of the sidecars, the frontend sidecar, and use it to invoke the catalog service via its sidecar.
+
+First, expose port 3500 of the frontend sidecar outside of the composition. To accomplish this, add the port mapping of the frontend service in the `docker-compose.override.yml` file. You need to expose it through the frontend service, not the frontend-sidecar service.
+
+```yaml
+    ports:
+      - "5002:80"
+      - "5001:443"
+      - "3500:3500" # Add this line
+```
+Restart your composition and navigate to the exposed port 3500. In GitHub Codespaces and Visual Studio Code you can use the Ports window. On a local development machine you can simply go to http://localhost:3500. The browser will show an error initially. Add a relative URL of `v1.0/invoke/catalog/method/event` to the URL. This is the sidecar API to do service invocation. Its format uses the name of the other service `catalog` and the method `event` to invoke. You should get a response with the event catalog in JSON format.
+
+```
+[{
+  "eventId":"cfb88e29-4744-48c0-94fa-b25b92dea317",
+  "name":"John Egbert Live",
+  "price":65,
+  "artist":"John Egbert",
+  "date":"2022-12-17T01:07:33.9642217+00:00",
+  "description":"Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
+  "imageUrl":"/img/banjo.jpg"
+}, 
+// Omitted for brevity...
+]
+```
+Another way to invoke a different service is to pretend you are calling the service directly. In our case we would call the frontend sidecar as if it is the catalog service. This means that the URL needs to be changed to `/event`, the controller endpoint of the catalog web API. The base address of the URL does not change and remains the frontend sidecar URL.
+
+Use your favorite tool to inject a header into the HTTP request to the URL. You can use the `ModHeader` browser extension, Postman or any other tool. Add a header named `dapr-app-id` and give it the value `catalog`. Make a new request and see how you will get the same result.  
