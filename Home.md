@@ -15,3 +15,4 @@ The files for the labs for this workshop can be found at https://github.com/Xpir
 - Lab 6 - [Using Secret Store building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-6:-Using-Secret-Store-building-block)
 - Lab 7 - [Using State Store building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-7:-Using-State-Store-building-block)
 - Lab 8 - [Deploying to a local cluster](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-8:-Deploying-to-a-local-cluster)
+- Lab 9 - [Deploying to Azure Kubernetes Service](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-9---Deploying-to-Azure-Kubernetes-Service)
