@@ -247,7 +247,7 @@ Examine the contents of `catalog.yaml`:
         imagePullPolicy: Never
 ```
 
-Notice how the definition of the deployment refers to `local/globoticket-dap-catalog:latest` and never pulls an image from a registry, as they should already be available locally because of the build. 
+Notice how the definition of the deployment refers to `local/globoticket-dapr-catalog:latest` and never pulls an image from a registry, as they should already be available locally because of the build. 
 
 ```cmd
 docker tag catalog local/globoticket-dapr-catalog:latest
@@ -256,8 +256,20 @@ kubectl apply -f .\catalog.yaml
 docker tag ordering local/globoticket-dapr-ordering:latest
 kubectl apply -f .\ordering.yaml
 
-docker tag ordering local/globoticket-dapr-frontend:latest
+docker tag frontend local/globoticket-dapr-frontend:latest
 kubectl apply -f .\frontend.yaml
 ```
 
 Check your dashboard and verify that everything runs correctly. Visit the GloboTicket website at http://localhost:8080 and try to order tickets.
+
+In case you are unable to reach the website, it might be because the loadbalancer for the frontend service did not give an external IP address yet. Check the state of the services by running:
+
+```cmd
+kubectl get services
+```
+
+Examine the output and check the value for the `EXTERNAL-IP` of the `frontend`. If it is still reading `<pending>` you can use a workaround by creating a port-forward.
+```cmd
+kubectl port-forward svc/frontend 8081:8080
+```
+Try to visit the website at http://localhost:8081 if you create the forward to the frontend servicec port.
