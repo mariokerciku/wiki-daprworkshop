@@ -1,11 +1,12 @@
 In this lab you will deploy the GloboTicket application to a Kubernetes cluster running in the cloud. The lab assumes you have an Azure subscription and are able to use Azure Kubernetes Service (AKS). You can get a free trial Azure account at https://azure.microsoft.com/en-us/free/.
 
-## Preparations in Azure
+# Preparations in Azure
 You will be using PowerShell to run most of the CLI commands for Azure. Make sure you have installed the Azure CLI by running the `az` command from a terminal window. If you are using GitHub Codespaces this should already be installed. If you are doing this lab on your own machine, it might not be installed. If so, follow the instructions at https://docs.microsoft.com/en-us/cli/azure/install-azure-cli to install the right Azure CLI for your setup.
 
+## Creating Azure resources
 The Azure resources will be created inside a single resource group. Ideally, you will split the resources over multiple resource groups. In this lab there is a single group to contain all resources, which will make cleaning resources easier.
 
-Set two variables for the name of the resource group and its location.
+Set two variables for the name of the resource group and its location. You can choose an Azure region that is most convenient for you.
 
 ```cmd
 $RESOURCEGROUP = "DaprWorkshop"
@@ -128,24 +129,25 @@ dapr status -k
 # Installing dependencies 
 With the cluster setup, it is time to install the dependencies for Dapr and our application. Go through similar steps as for your local cluster to install the dependencies to the AKS cluster. Below you can find the short instructions. You can refer to the previous lab for details. 
 
-## Distributed tracing with Zipkin
-Install the pod with Zipkin and open a forwarded port to the service:
+- Distributed tracing with Zipkin
 ```cmd
 kubectl create deployment zipkin --image openzipkin/zipkin
 kubectl expose deployment zipkin --type ClusterIP --port 9411
 kubectl port-forward svc/zipkin 9413:9411
 ```
-
-## SMTP mail server with MailDev
+- SMTP mail server with MailDev
 ```cmd
 kubectl create deployment maildev --image maildev/maildev 
 ```
-
-## State store and pub/sub with Redis
+- Secret for database
+```cmd
+kubectl create secret generic catalogconnectionstring --from-literal=catalogconnectionstring="Event Catalog Connection String from Kubernetes"
+kubectl apply -f .\kubernetes-secretstore.yaml
+```
+- State store and pub/sub with Redis
 ```cmd
 helm install daprworkshop-redis bitnami/redis
 ```
-
 This time you will not need to get the password from the Redis installation. Instead we will use the Kubernetes secret that was automatically created and refer to that in the component definitions of `statestore` and `pubsub` later on.
 
 # Dapr components
