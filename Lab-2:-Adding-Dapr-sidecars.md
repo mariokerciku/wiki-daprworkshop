@@ -66,11 +66,11 @@ Now it is time to start your composition for the GloboTicket application again. 
  
 In Visual Studio 2022 you can check the running containers by inspecting the Containers window. It should show the 3 services running, with a sidecar for each, plus the Redis and Zipkin containers.
 
-![image](https://user-images.githubusercontent.com/5504642/173665151-60c7379b-6be0-4fdb-8cdd-6d2649363dad.png)
+<img src="https://user-images.githubusercontent.com/5504642/173665151-60c7379b-6be0-4fdb-8cdd-6d2649363dad.png" width="300" />
 
 In Visual Studio Code you can use the Docker extension to inspect running containers.
 
-![image](https://user-images.githubusercontent.com/5504642/173665220-3c7b5254-509d-46b4-b96a-3d9add8f476f.png)
+<img src="https://user-images.githubusercontent.com/5504642/173665220-3c7b5254-509d-46b4-b96a-3d9add8f476f.png" width="500" />
 
 Of course you can always use the Docker or Docker Compose CLI to ask for running containers.
 
