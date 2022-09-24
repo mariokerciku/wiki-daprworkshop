@@ -16,9 +16,13 @@ If you followed the instructions in Lab 0 you should have a running codespace to
 docker-compose up --build
 ```
 
-You should see a window appear after starting the application composition using Docker-Compose:
+You should see a window appear after starting the application composition using Docker-Compose Click the button in the popup to open the frontend on port 5001:
 
 <img src="https://user-images.githubusercontent.com/5504642/173662514-8cf8bb49-f81b-4c6d-8b75-e7b988a4c1e2.png" width="400" />
+
+If you miss the popup you can still see all the containers and exposed ports running by looking at the small dialog mentioning the exposed ports. You can rightclick urls in the local address column and select "open in browser" to view that container on that port in the browser.
+
+<img src="https://user-images.githubusercontent.com/5504642/173662780-e5b272fd-7872-45b0-836a-8c6334efb395.png" width="700" />
 
 Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
 
@@ -32,7 +36,7 @@ If you are not using GitHub Codespaces you will probably use one of the availabl
 Open the globoticket-dapr.sln solution file in Visual Studio 2022. You can inspect the solution as usual. 
 Run the application by settings the Docker Compose project as the startup file and pressing F5.
 
-The application should build the images and start the container composition using the `docker-compose.yml` and `docker-compose.override.yml` files. After a successful launch Visual Studio should open a browser automatically. If not, navigate to http://localhost:5002/. 
+The application should build the images and start the container composition using the `docker-compose.yml` and `docker-compose.override.yml` files. After a successful launch Visual Studio should open a browser automatically. If not, navigate to http://localhost:5001/. 
 
 Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
  
@@ -45,7 +49,7 @@ After the composition has started you should see a small dialog mentioning the e
 
 <img src="https://user-images.githubusercontent.com/5504642/173662780-e5b272fd-7872-45b0-836a-8c6334efb395.png" width="700" />
 
-Right-click port 5002 for the frontend application and select `Open in Browser`. 
+Right-click port 5001 for the frontend application and select `Open in Browser`. 
 Your browser should open and display the homepage of GloboTicket.
 
 ## Exploring GloboTicket application
