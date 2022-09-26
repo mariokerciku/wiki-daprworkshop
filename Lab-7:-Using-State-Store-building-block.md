@@ -28,4 +28,24 @@ Inspect the implementation for `DaprClientStateStoreShoppingBasket` and `StateSt
 ## Adding building block definition
 With these changes in place we can start using the state store building block. As before you wil also need to copy the component definition from the `components/docker-compose` folder. The file is named `statestore.yaml`.
 
+## Check the volume mount for the state store.
+We're using a redis cache container for persistance. by default a container does not store it's state after restarting it. So what we can do is add a volume mount to the state store container so the redis cache can store it's data outside of it's container and the data will survive a restart.
+
+At the bottom of the Redis definition in the `docker-compose.yaml` add a volume mount to a folder called `data`
+```
+  redis:
+    container_name: "redis"
+    image: "redis:6.2-alpine"
+    ports:
+      - "6379"
+    networks:
+      - globoticket
+    volumes:            #Add this line
+     - "./data:/data"   #Add this line
+```
+
+Now also create a `data` folder in the root of your solution. This is used in the volume mount so redis can store it's files here. It will create a `dump.rdb` file regularly and when stopping the redis cache. 
+
+### Testing the persistence of the state store.
+
 Now you can test your new implementation and see if it is able to store your shopping basket. Try stopping the composition and starting it again to see whether it survives a restart. The state of the shopping basket should be persisted.
