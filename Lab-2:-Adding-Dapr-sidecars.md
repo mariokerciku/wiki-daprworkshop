@@ -33,7 +33,7 @@ Repeat creating the sidecar definitions for both the frontend and ordering servi
 
 ## Additional dependencies for Dapr
 Since Dapr requires a number of extra dependencies for a state store, pub sub and telemetry, simple versions such as Redis Cache and Zipkin are used for local development. 
-You will add these to the docker-compose override file as well, below the sidecar definitions.
+You will add these to the docker-compose file as well, below the sidecar definitions.
 
 ```yaml
   redis:
