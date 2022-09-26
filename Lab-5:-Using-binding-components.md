@@ -23,19 +23,22 @@ Next, inject the `DaprClient` instance through the `EmailSender` constructor.
     }
 ```
 
-We can now use the `DaprClient` object inside the `SendEmailForOrder` method. Remove the call to `logger.LogWarning` and add the following fragment:
+We can now use the `DaprClient` object inside the `SendEmailForOrder` method. Update the signature to make the method async, remove the call to `logger.LogWarning` and add the following fragment:
 
 ```C#
-logger.LogInformation($"Sending email");
-var metadata = new Dictionary<string, string>
-{
-  ["emailFrom"] = "noreply@globoticket.shop",
-  ["emailTo"] = order.CustomerDetails.Email,
-  ["subject"] = $"Thank you for your order"
-};
-var body = $"<h2>Your order has been received</h2>"
-  + "<p>Your tickets are on the way!</p>";
-await daprClient.InvokeBindingAsync("sendmail", "create", body, metadata);      
+public async Task SendEmailForOrder(OrderForCreation order)  
+{  
+  logger.LogInformation($"Sending email");
+  var metadata = new Dictionary<string, string>
+  {
+    ["emailFrom"] = "noreply@globoticket.shop",
+    ["emailTo"] = order.CustomerDetails.Email,
+    ["subject"] = $"Thank you for your order"
+  };
+  var body = $"<h2>Your order has been received</h2>"
+    + "<p>Your tickets are on the way!</p>";
+  await daprClient.InvokeBindingAsync("sendmail", "create", body, metadata);      
+} 
 ```
 
 The last statement is the actual call to invoke the binding. It uses the `sendmail` component and invokes the `create` action. The actual actions and arguments can vary per binding. The SMTP binding offers a single `create` method with two arguments for the email body and the metadata.
