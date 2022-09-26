@@ -2,7 +2,7 @@ In this lab you will add support for the publish/subscribe pattern using Dapr si
 The PubSub building block will be used to publish an event from the frontend when an order is placed. Additionally, the ordering service is going to subscribe to the published message.
 
 ## Adding pubsub component
-In this exercise we will use the Redis backend to serve as the pubsub broker. Copy the `pubsub.yaml` from the lab-resources folder into the `components\docker-compose` folder. Open the `Dapr/docker-compose/pubsub.yaml` file to inspect the definition of the pubsub component. It uses the 'redis' service defined earlier in the `docker-compose.override.yml` file. 
+In this exercise we will use the Redis backend to serve as the pubsub broker. Copy the `pubsub.yaml` from the lab-resources folder into the `components\docker-compose` folder. Open the `Dapr/docker-compose/pubsub.yaml` file to inspect the definition of the pubsub component. It uses the 'redis' service defined earlier in the `docker-compose.yml` file. 
 
 You can start up the composition again and inspect the logs for the Dapr sidecar containers. It should indicate that the pubsub component was loaded successfully. This means it is available for you to use in your code.
 
