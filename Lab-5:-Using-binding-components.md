@@ -43,6 +43,19 @@ public async Task SendEmailForOrder(OrderForCreation order)
 
 The last statement is the actual call to invoke the binding. It uses the `sendmail` component and invokes the `create` action. The actual actions and arguments can vary per binding. The SMTP binding offers a single `create` method with two arguments for the email body and the metadata.
 
+Since the `SendMailForOrder` method is now an `async` method, we must update the calling code to `await` it. Move to the `OrderController` in the `Controllers` folder of the `ordering` project, and make the `Submit` method `async` and `await` the call to `SendEmailForOrder`:
+```C#
+[Topic("pubsub", "orders")]  
+[HttpPost("", Name = "SubmitOrder")]  
+public async Task<IActionResult> Submit(OrderForCreation order)  
+{  
+  logger.LogInformation($"Received a new order from {order.CustomerDetails.Name}");  
+  SendAppInsightsTelemetryOrderProcessed();  
+  await emailSender.SendEmailForOrder(order);  
+  return Ok();  
+}  
+```
+
 Copy the `email.yaml` file from `lab-resources` to the `components/docker-compose` folder. Open and inspect the file. Notice how it specifies the `binding.smtp` component with a name `sendmail`. The scope is limited to the ordering service, so it is only available for that service.
 
 The SMTP server implementation for the development environment on your laptop is provided by another Docker container. Add the SMTP container based on the `maildev/maildev` image to the `docker-compose.override.yml` file.
