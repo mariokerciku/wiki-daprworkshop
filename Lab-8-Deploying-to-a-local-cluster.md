@@ -226,7 +226,8 @@ An alternative would be to use Docker Compose to perform the build, based on the
 docker-compose build 
 ```
 Remember that you can combine building and starting (upping) a composition using `docker-compose up --build`.
-This creates 
+
+Building the composition will build three container images with a full release build. These can be deployed to the cluster. Debug builds creates images 
 
 ## Deploying pods 
 The final step to get to a complete solution is to tag the container images that were created with a registry name at the front. To indicate that we will get the images from the local image store, we will name the registry `local`.
@@ -255,13 +256,13 @@ Notice how the definition of the deployment refers to `local/globoticket-dapr-ca
 
 ```cmd
 docker tag catalog local/globoticket-dapr-catalog:latest
-kubectl apply -f .\catalog.yaml
+kubectl apply -f ./catalog.yaml
 
 docker tag ordering local/globoticket-dapr-ordering:latest
-kubectl apply -f .\ordering.yaml
+kubectl apply -f ./ordering.yaml
 
 docker tag frontend local/globoticket-dapr-frontend:latest
-kubectl apply -f .\frontend.yaml
+kubectl apply -f ./frontend.yaml
 ```
 
 Check your dashboard and verify that everything runs correctly. Visit the GloboTicket website at http://localhost:8080 and try to order tickets.
