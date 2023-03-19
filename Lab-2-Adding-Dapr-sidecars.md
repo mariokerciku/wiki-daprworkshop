@@ -1,4 +1,9 @@
 In this lab you will introduce Dapr into the GloboTicket solution. You are going to learn how to add Dapr sidecars to an existing Docker composition. Also, you will see a number of ways to run your application using Dapr support and experiment with the new setup.
+Make sure that you have installed the Dapr CLI and initialized the runtime. You can validate the installation by running 
+```
+dapr --version
+```
+Go back to [Preparing your machine](Lab-0-Preparing-your-machine) if the CLI or runtime was not installed or initialized.
 
 ## Adding Dapr support
 Make sure you have familiarized yourself with the contents of the Docker Compose files docker-compose.yml and docker-compose.override.yml. 
