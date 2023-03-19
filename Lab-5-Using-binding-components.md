@@ -101,7 +101,7 @@ scopes:
 Consequently, the catalog sidecar has the cron binding and the catalog service will need the endpoint.
 
 To create a simple `/scheduled` endpoint we can use a Minimal Web API through a mapped POST request.
-In the `Program.cs` find the call to `UseAuthorization` and add a call to `MapPost`:
+In the `Program.cs` find the call to `UseAuthorization` and add a call to `MapPost` after it:
 
 ```C#
 app.UseAuthorization();
@@ -115,4 +115,4 @@ app.MapPost("scheduled", (ILoggerFactory factory, IEventRepository repository) =
 
 Start the application and check the output from the logger in the output window. It should show a logged call to the scheduled endpoint.
 
-<img src="https://user-images.githubusercontent.com/5504642/173680430-486bc8e9-93cb-4ccc-a643-53817fd8e431.png" width="400" />
+<img src="https://user-images.githubusercontent.com/5504642/173680430-486bc8e9-93cb-4ccc-a643-53817fd8e431.png" width="500" />
