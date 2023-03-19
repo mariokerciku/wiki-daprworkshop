@@ -7,7 +7,7 @@ In this exercise we will use the Redis backend to serve as the pubsub broker. Co
 You can start up the composition again and inspect the logs for the Dapr sidecar containers. It should indicate that the pubsub component was loaded successfully. This means it is available for you to use in your code.
 
 ```
-time="2022-06-14T12:31:45.925497486Z" level=info msg="component loaded. name: pubsub, type: pubsub.redis/v1" app_id=ordering instance=e363259233e6 scope=dapr.runtime type=log ver=1.7.3
+time="2023-03-19T20:45:50.056746385Z" level=info msg="component loaded. name: pubsub, type: pubsub.redis/v1" app_id=frontend instance=d8df7db28771 scope=dapr.runtime type=log ver=1.10.3
 ```
 
 ## Publish events using Dapr
