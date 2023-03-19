@@ -136,7 +136,7 @@ If the Dapr CLI installation is successful, you can install the Dapr runtime by 
 dapr init
 ```
 
-<img src="https://user-images.githubusercontent.com/5504642/226200119-49b06036-0570-457c-a79b-9d17da2d5a3d.png" width="300" />
+<img src="https://user-images.githubusercontent.com/5504642/226200119-49b06036-0570-457c-a79b-9d17da2d5a3d.png" width="400" />
 
 
 # For the adventurous
