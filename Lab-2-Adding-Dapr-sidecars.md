@@ -94,5 +94,7 @@ In later labs you will copy component yaml files into the components folder. Rep
 
 ## Running your application with Dapr sidecars
 Try your new container composition and see if everything works as expected. You can check this URL to see if Zipkin is working correctly: http://localhost:9412.
-If you are running in Codespaces go to your `Ports` tab and right-click the container running on port 9412 and select `Open in browser`)
+If you are running in Codespaces go to your `Ports` tab and right-click the container running on port 9412 and select `Open in browser`).
+
+When you click on the `Run Query` button no results appear. This is because we do not use the Dapr sidecars yet, so nothing has really changed. The focus of the next lab is to use the sidecars for service invocation.
 
