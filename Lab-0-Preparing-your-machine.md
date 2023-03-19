@@ -147,4 +147,4 @@ You can also choose to install a preview version of the next .NET in case you wa
 
 Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the `.csproj` files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
 
-<img src="https://user-images.githubusercontent.com/5504642/226199217-8888de9c-8c6a-4203-af85-3d3194f22205.png" width="500" />
+<img src="https://user-images.githubusercontent.com/5504642/226199217-8888de9c-8c6a-4203-af85-3d3194f22205.png" width="400" />
