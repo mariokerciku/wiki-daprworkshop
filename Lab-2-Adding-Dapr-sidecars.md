@@ -15,7 +15,7 @@ Add a sidecar for the catalog service in the same `docker-compose.yml` file. Eve
 ```yaml
   catalog-dapr:
     container_name: "catalog-sidecar"
-    image: "daprio/daprd:1.7.3"
+    image: "daprio/daprd:1.10.3"
     command: [
       "./daprd",
      "-app-id", "catalog",
@@ -30,7 +30,7 @@ Add a sidecar for the catalog service in the same `docker-compose.yml` file. Eve
     network_mode: "service:catalog"
 ```
 
-Notice how the image for this sidecar container is `daprio/daprd` and has a tag of 1.7.3 for the Dapr version. Also, the name of the sidecar `catalog-dapr` reflects the fact that this sidecar belongs to the catalog service. The name of `catalog` appears in multiple places, such as app-id, the unique name of the Dapr application this sidecar belongs to. Dapr considers other containers running as applications.
+Notice how the image for this sidecar container is `daprio/daprd` and has a tag of 1.10.3 for the Dapr version. Also, the name of the sidecar `catalog-dapr` reflects the fact that this sidecar belongs to the catalog service. The name of `catalog` appears in multiple places, such as app-id, the unique name of the Dapr application this sidecar belongs to. Dapr considers other containers running as applications.
 
 Another important thing to note is that the network mode of the sidecar is defined as `service:catalog` indicating that the networks of the catalog and `catalog-dapr` containers are tightly connected. The net effect is that the two containers behave almost as if they are running in a pod like Kubernetes does. We will cover pods in more detail in a later lab.
 
