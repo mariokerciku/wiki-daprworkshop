@@ -204,7 +204,7 @@ kubectl apply -f ./appconfig.yaml
 
 This would be a good time to look at the Dapr dashboard again.
 
-![image](https://user-images.githubusercontent.com/5504642/174189748-f759559d-9232-4acb-be2a-d054e3ca1a3c.png)
+![image](https://user-images.githubusercontent.com/5504642/226215473-5a490c74-2039-4209-93c6-cc449691d29c.png)
 
 ## Secret store for database
 Kubernetes has its own secret store that you can use to store the secrets in your composition. Create a new secret with a different value for the fictitious connection string, so you can see the effect later on.
