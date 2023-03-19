@@ -162,13 +162,13 @@ The `lab-resources` directory contains a subdirectory called `kubernetes`. Copy 
 
 ```cmd
 cd components/kubernetes
-kubectl apply -f .\cron.yaml
+kubectl apply -f ./cron.yaml
 ```
 
 ## Binding to SMTP 
 Repeat the same for the SMTP binding component. 
 ```cmd
-kubectl apply -f .\email.yaml
+kubectl apply -f ./email.yaml
 ```
 
 ## Statestore and pubsub
@@ -193,13 +193,13 @@ The redisHost is `daprworkshop-redis-master:6379` referring to the name found ea
 Deploy the two components for `pubsub` and `statestore`:
 
 ```cmd
-kubectl apply -f .\redis-pubsub.yaml
-kubectl apply -f .\redis-statestore.yaml
+kubectl apply -f ./redis-pubsub.yaml
+kubectl apply -f ./redis-statestore.yaml
 ```
 
 Finally, deploy the Dapr configuration for this application: 
 ```cmd
-kubectl apply -f .\appconfig.yaml
+kubectl apply -f ./appconfig.yaml
 ```
 
 This would be a good time to look at the Dapr dashboard again.
@@ -211,7 +211,7 @@ Kubernetes has its own secret store that you can use to store the secrets in you
 
 ```cmd
 kubectl create secret generic catalogconnectionstring --from-literal=catalogconnectionstring="Event Catalog Connection String from Kubernetes"
-kubectl apply -f .\kubernetes-secretstore.yaml
+kubectl apply -f ./kubernetes-secretstore.yaml
 ```
 
 # Application containers
