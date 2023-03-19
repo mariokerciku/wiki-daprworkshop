@@ -92,7 +92,13 @@ The **catalog** service has a scheduled task to calculate a special offer ticket
 
 Copy the `cron.yaml` file from `lab-resources` to `components/docker-compose`. Open the file to inspect the `bindings.cron` type component is defined in it. The schedule is defined at `"@every 5m"` and scoped to the catalog service.
 Whenever the period of the schedule is passed, the sidecar will issue an HTTP POST request to the `/scheduled` endpoint of the service it is connected to. The endpoint is defined by the name of the component, which is `scheduled`.
-In this case the `cron.yaml` file is scoped to include the catalog service only. Consequently, the catalog sidecar has the cron binding and the catalog service will need the endpoint.
+
+In this case the `cron.yaml` file is scoped to include the catalog service only. 
+```
+scopes:
+- catalog
+```
+Consequently, the catalog sidecar has the cron binding and the catalog service will need the endpoint.
 
 To create a simple `/scheduled` endpoint we can use a Minimal Web API through a mapped POST request.
 In the `Program.cs` find the call to `UseAuthorization` and add a call to `MapPost`:
