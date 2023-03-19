@@ -135,9 +135,7 @@ If the Dapr CLI installation is successful, you can install the Dapr runtime by 
 ```cmd
 dapr init
 ```
-
-<img src="https://user-images.githubusercontent.com/5504642/226200119-49b06036-0570-457c-a79b-9d17da2d5a3d.png" width="400" />
-
+<img src="https://user-images.githubusercontent.com/5504642/226201810-096f0dff-afe2-4f6f-995d-cbaadcfdd403.png" width="700" />
 
 # For the adventurous
 You might already be very familiar with Docker and Kubernetes. If that is the case you can choose to follow the labs with something a little less mainstream. 
