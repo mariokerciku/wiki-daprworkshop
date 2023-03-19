@@ -41,7 +41,7 @@ At the bottom of the Redis definition in the `docker-compose.yaml` add a volume 
     networks:
       - globoticket
     volumes:            #Add this line
-     - "./data:/data"   #Add this line
+      - "./data:/data"   #Add this line
 ```
 
 Now also create a `data` folder in the root of your solution. This is used in the volume mount so redis can store it's files here. It will create a `dump.rdb` file regularly and when stopping the redis cache. 
