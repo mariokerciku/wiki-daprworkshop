@@ -124,7 +124,7 @@ Also, you can check the status of Dapr from the command-line:
 ```cmd
 dapr status -k
 ```
-![image](https://user-images.githubusercontent.com/5504642/174283547-77e6155b-12ed-4bee-8260-5b1515d9e0e7.png)
+![image](https://user-images.githubusercontent.com/5504642/226217547-d5663218-93eb-4cc3-9850-ec04a7e8e8df.png)
 
 ## Installing dependencies 
 With the cluster setup, it is time to install the dependencies for Dapr and our application. Go through similar steps as for your local cluster to install the dependencies to the AKS cluster. Below you can find the short instructions. You can refer to the previous lab for details. 
