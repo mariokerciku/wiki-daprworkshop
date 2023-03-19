@@ -109,7 +109,7 @@ You can get to manage your codespaces in more detail by following the link to `M
 
 You can also remove instances, change the machine type later or export changes inside the codespace to a branch.
 
-<img src="https://user-images.githubusercontent.com/5504642/226198978-d6ded209-51ef-433b-8be7-29b056436c58.png" width="600" />
+<img src="https://user-images.githubusercontent.com/5504642/226198978-d6ded209-51ef-433b-8be7-29b056436c58.png" width="800" />
 
 ## Using Minikube inside Codespaces
 The labs in this workshop can be performed on your own laptop or inside a GitHub Codespaces. There is one additional preparation step needed in the case of running Minikube inside a codespace.
@@ -117,7 +117,7 @@ The labs in this workshop can be performed on your own laptop or inside a GitHub
 If you want to prepare ahead of time, you can execute this statement. In a later lab you will learn more about the details.
 
 ```cmd
-eval $(minikube docker-env) # for WSL
+eval $(minikube docker-env) # for WSL or bash terminal
 & minikube -p minikube docker-env --shell powershell | Invoke-Expression # for PowerShell 
 ```
 
@@ -147,4 +147,4 @@ You can also choose to install a preview version of the next .NET in case you wa
 
 Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the `.csproj` files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
 
-<img src="https://user-images.githubusercontent.com/5504642/173657260-a86bbd58-67d6-49f0-ace2-585bf880364e.png" width="500" />
+<img src="https://user-images.githubusercontent.com/5504642/226199217-8888de9c-8c6a-4203-af85-3d3194f22205.png" width="500" />
