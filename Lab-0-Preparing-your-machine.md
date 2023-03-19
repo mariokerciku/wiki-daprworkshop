@@ -92,9 +92,18 @@ On this page you should find a drop down with '<> Code' on it. Select the Codesp
 
 <img src="https://user-images.githubusercontent.com/5504642/226197931-de04eb36-44d2-4f84-b375-6069dd864d25.png" width="300" />
 
-If you want more control over the options you can open the dropdown and select the second option for configuring advanced settings. In most cases the default of 2 cores and 4 GB of RAM should suffice.
+If you want more control over the options you can open the menu by clicking the elipsis at the right of the dialog. Choose `New with options...` from the menu. 
 
-<img src="https://user-images.githubusercontent.com/5504642/173656802-6ada9384-d26b-4b56-aa95-56f1ba04385e.png" width="300" />
+<img src="https://user-images.githubusercontent.com/5504642/226198163-f49a6ad9-6d59-4b50-b974-886445a8208c.png" width="300" />
+
+A new dialog appears that allows you to specify details of your codespace.
+
+<img src="https://user-images.githubusercontent.com/5504642/226198586-c7367a8d-36c3-4aa8-96e8-bb424eb8f93e.png" width="700" />
+![image](https://user-images.githubusercontent.com/5504642/226198703-a9b68c68-7d1b-48c5-a03e-b0a233e30bcf.png)
+
+Select "4-core, 8GB RAM" from the last option `Machine type`
+
+<img src="https://user-images.githubusercontent.com/5504642/226198516-fec10813-3e29-4f2c-a057-2c2ab9e9f06f.png" width="600" />
 
 Alternatively you can select one of the existing codespaces if you happen to return and continue work on a previous codespace session. 
 You can also remove these instances, change the machine type later on or export changes inside the codespace to a branch. You can get to manage your codespaces in more detail by following the link to `Manage All` in the first screenshot.
