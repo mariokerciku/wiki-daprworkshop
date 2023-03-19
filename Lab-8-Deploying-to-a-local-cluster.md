@@ -18,7 +18,8 @@ Kubernetes in Docker Desktop:
 Also, you can check using the Visual Studio Code extension for Kubernetes to see if you are connected correctly.
 
 ![image](https://user-images.githubusercontent.com/5504642/173692328-1abcd1c8-dffe-481a-a2f5-ddf19911d617.png)
-![image](https://user-images.githubusercontent.com/5504642/173692437-7894eead-386a-4838-acfc-d7329253fcf0.png)
+
+<img src="https://user-images.githubusercontent.com/5504642/173692437-7894eead-386a-4838-acfc-d7329253fcf0.png" width="700" />
 
 ## Preparing cluster to use Dapr
 Prepare your cluster by installing the Dapr runtime and control plane. Verify that Dapr CLI and runtime are installed correctly first.
