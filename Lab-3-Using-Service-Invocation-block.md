@@ -21,7 +21,7 @@ As you can see, it uses the `ApiConfig` section to retrieve the URLs of the two 
 Add the Dapr client SDK NuGet package to the frontend project. 
 In Visual Studio 2022 you can right-click the frontend project and select `Manage NuGet packages`. Since the project is an ASP.NET Core project, search for the package `Dapr.AspNetCore`. Accept the license agreements and verify that the package has been added.
 
-![image](https://user-images.githubusercontent.com/5504642/173668283-e02fa3e0-56d2-40c1-9a02-ef674394ee47.png)
+![image](https://user-images.githubusercontent.com/5504642/226207331-cf2563fd-6a7b-49a2-8304-5e55cb9a3c31.png)
 
 In Visual Studio Code or GitHub Codespaces run the following commands from a terminal window:
 ```cmd
