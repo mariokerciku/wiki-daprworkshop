@@ -6,13 +6,13 @@ The lab uses an existing .NET based application for a ticket selling webapplicat
 
 The files for the labs for this workshop can be found at https://github.com/XpiritCommunityEvents/DaprWorkshop. 
 
-- Lab 0 - [Preparing your machine](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-0:-Preparing-your-machine) (can be done before the workshop starts)
-- Lab 1 - [Inspecting GloboTicket](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket)
-- Lab 2 - [Adding Dapr sidecars](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-2:-Adding-Dapr-sidecars)
-- Lab 3 - [Using Service Invocation building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-3:-Using-Service-Invocation-block)
-- Lab 4 - [Using PubSub building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-4:-Using-PubSub-building-block)
-- Lab 5 - [Using binding components](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-5:-Using-binding-components)
-- Lab 6 - [Using Secret Store building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-6:-Using-Secret-Store-building-block)
-- Lab 7 - [Using State Store building block](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-7:-Using-State-Store-building-block)
-- Lab 8 - [Deploying to a local cluster](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-8:-Deploying-to-a-local-cluster)
-- Lab 9 - [Deploying to Azure Kubernetes Service](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-9---Deploying-to-Azure-Kubernetes-Service)
+- Lab 0 - [Preparing your machine](Lab-0-Preparing-your-machine) (can be done before the workshop starts)
+- Lab 1 - [Inspecting GloboTicket](Lab-1-Inspecting-GloboTicket)
+- Lab 2 - [Adding Dapr sidecars](Lab-2-Adding-Dapr-sidecars)
+- Lab 3 - [Using Service Invocation building block](Lab-3-Using-Service-Invocation-block)
+- Lab 4 - [Using PubSub building block](Lab-4-Using-PubSub-building-block)
+- Lab 5 - [Using binding components](Lab-5-Using-binding-components)
+- Lab 6 - [Using Secret Store building block](Lab-6-Using-Secret-Store-building-block)
+- Lab 7 - [Using State Store building block](Lab-7-Using-State-Store-building-block)
+- Lab 8 - [Deploying to a local cluster](Lab-8-Deploying-to-a-local-cluster)
+- Lab 9 - [Deploying to Azure Kubernetes Service](Lab-9-Deploying-to-Azure-Kubernetes-Service)
