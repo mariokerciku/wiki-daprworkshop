@@ -105,7 +105,7 @@ Verify that the Dapr CLI and runtime are installed.
 dapr --version
 ```
 
-<img src="https://user-images.githubusercontent.com/5504642/174283221-e4b1e30f-6776-4265-93e4-90f7282c4089.png" width="300" />
+<img src="https://user-images.githubusercontent.com/5504642/226217423-fee2ddbd-4013-472c-9b43-a6da7f6b25e5.png" width="300" />
 
 Run the initialization of Dapr on your AKS cluster. 
 ```cmd
