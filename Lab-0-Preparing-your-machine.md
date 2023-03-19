@@ -99,16 +99,17 @@ If you want more control over the options you can open the menu by clicking the 
 A new dialog appears that allows you to specify details of your codespace.
 
 <img src="https://user-images.githubusercontent.com/5504642/226198586-c7367a8d-36c3-4aa8-96e8-bb424eb8f93e.png" width="700" />
-![image](https://user-images.githubusercontent.com/5504642/226198703-a9b68c68-7d1b-48c5-a03e-b0a233e30bcf.png)
 
-Select "4-core, 8GB RAM" from the last option `Machine type`
-
-<img src="https://user-images.githubusercontent.com/5504642/226198516-fec10813-3e29-4f2c-a057-2c2ab9e9f06f.png" width="600" />
+Select "4-core, 8GB RAM" from the last option `Machine type` and change the region to be near to your location if needed. Click `Create codespace` to start the creation of your private development environment in the cloud.
 
 Alternatively you can select one of the existing codespaces if you happen to return and continue work on a previous codespace session. 
-You can also remove these instances, change the machine type later on or export changes inside the codespace to a branch. You can get to manage your codespaces in more detail by following the link to `Manage All` in the first screenshot.
+You can get to manage your codespaces in more detail by following the link to `Manage All` in the first screenshot.
 
-<img src="https://user-images.githubusercontent.com/5504642/173656910-f15be80c-f6c5-478f-ba62-2838e492b2e1.png" width="800" />
+<img src="https://user-images.githubusercontent.com/5504642/226199099-105b49c9-3fcc-4151-922c-ba18ff04aa12.png" width="300" />
+
+You can also remove instances, change the machine type later or export changes inside the codespace to a branch.
+
+<img src="https://user-images.githubusercontent.com/5504642/226198978-d6ded209-51ef-433b-8be7-29b056436c58.png" width="600" />
 
 ## Using Minikube inside Codespaces
 The labs in this workshop can be performed on your own laptop or inside a GitHub Codespaces. There is one additional preparation step needed in the case of running Minikube inside a codespace.
