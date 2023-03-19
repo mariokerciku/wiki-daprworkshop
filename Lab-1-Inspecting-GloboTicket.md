@@ -22,7 +22,7 @@ You should see a window appear after starting the application composition using 
 
 If you miss the popup you can still see all the containers and exposed ports running by looking at the small dialog mentioning the exposed ports. You can rightclick urls in the local address column and select "open in browser" to view that container on that port in the browser.
 
-<img src="https://user-images.githubusercontent.com/5504642/173662780-e5b272fd-7872-45b0-836a-8c6334efb395.png" width="700" />
+<img src="https://user-images.githubusercontent.com/5504642/226200631-988f67bf-5a97-4903-9aa0-2af7fcc52b51.png" width="700" />
 
 Continue in the section [Exploring GloboTicket application](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-1:-Inspecting-GloboTicket#exploring-globoticket-application).
 
