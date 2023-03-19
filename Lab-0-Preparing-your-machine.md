@@ -24,7 +24,8 @@ The most preferable Integrated Development Environment (IDE) is Visual Studio 20
 <img src="https://user-images.githubusercontent.com/5504642/226197270-b6fadca7-fd83-4318-a5ee-563232b5140f.png" width="600" />
 
 Visual Studio Code is available for all three platforms Windows, Linux and MacOS. On Linux Visual Studio Code is recommended, as there is no Visual Studio for Linux available. 
-<img src="https://user-images.githubusercontent.com/5504642/226197221-a8efcf83-00ae-430c-9600-5f97647d668e.png" width="400" />
+
+<img src="https://user-images.githubusercontent.com/5504642/226197221-a8efcf83-00ae-430c-9600-5f97647d668e.png" width="600" />
 
 ## Add Visual Studio Code extensions
 If you have installed Visual Studio Code, you can add extensions. A couple of Visual Studio Code extensions are required to assist you during the labs. You can install them before the workshop or at the start of labs that require them.
@@ -56,9 +57,9 @@ You can enable Kubernetes in the settings of Docker Desktop. Open the Docker Des
 
 <img src="https://user-images.githubusercontent.com/5504642/173639225-150d5946-c697-4e85-bebf-e428399a9184.png" width="300" />
 
-Alternatively, you can start Docker Desktop again.
+Alternatively, you can start Docker Desktop again to open the management UI.
 
-<img src="https://user-images.githubusercontent.com/5504642/173639404-767524be-81fc-45b4-86f5-5c5024a4d023.png" width="600" />
+<img src="https://user-images.githubusercontent.com/5504642/226197793-b54ccd79-9383-48c7-9558-5ce4108414f1.png" width="600" />
 
 ## Alternative: install Minikube
 Minikube is a standalone version for single-node Kubernetes clusters in a development scenario. You do not need it if you have enabled the Docker Desktop Kubernetes cluster in the previous steps. If you choose not to use Docker Desktop or the Kubernetes cluster it provides, you should install Minikube to be able to work with Kubernetes on your development machine. 
@@ -89,7 +90,7 @@ You can use GitHub Codespaces to run your development machine from the cloud. Th
 Go to https://github.com/XpiritCommunityEvents/DaprWorkshop to find the repository for the Dapr workshop.
 On this page you should find a drop down with '<> Code' on it. Select the Codespaces tab and create a new codespace by pressing the Create button. 
 
-<img src="https://user-images.githubusercontent.com/5504642/173656582-7d0ed2d7-a749-4e86-803e-52e5e25a06db.png" width="300" />
+<img src="https://user-images.githubusercontent.com/5504642/226197931-de04eb36-44d2-4f84-b375-6069dd864d25.png" width="300" />
 
 If you want more control over the options you can open the dropdown and select the second option for configuring advanced settings. In most cases the default of 2 cores and 4 GB of RAM should suffice.
 
