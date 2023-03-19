@@ -73,7 +73,7 @@ In Visual Studio 2022 you can check the running containers by inspecting the Con
 
 <img src="https://user-images.githubusercontent.com/5504642/173665151-60c7379b-6be0-4fdb-8cdd-6d2649363dad.png" width="300" />
 
-In Visual Studio Code you can use the Docker extension to inspect running containers.
+In Visual Studio Code or your GitHub Codespace you can use the Docker extension to inspect running containers.
 
 <img src="https://user-images.githubusercontent.com/5504642/226204141-2594b2f2-f6dc-49f7-b27f-2bbf92e2e94b.png" width="500" />
 
