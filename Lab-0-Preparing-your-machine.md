@@ -128,13 +128,16 @@ Regardless of your setup, you will need to install the Dapr CLI and initialize t
 
 Install the Dapr CLI and check that it works correctly by typing `dapr` in a terminal window.
 
-<img src="https://user-images.githubusercontent.com/5504642/173639679-3e810077-5572-4a12-8292-e5dc9dfd1361.png" width="600" />
+<img src="https://user-images.githubusercontent.com/5504642/226199771-bb6b4176-c0f8-43a0-94a4-74cbb62d57fc.png" width="600" />
 
-If the Dapr CLI installation is succesfull, you can install the Dapr runtime by executing: 
+If the Dapr CLI installation is successful, you can install the Dapr runtime by executing: 
 
 ```cmd
 dapr init
 ```
+
+<img src="https://user-images.githubusercontent.com/5504642/226200119-49b06036-0570-457c-a79b-9d17da2d5a3d.png" width="300" />
+
 
 # For the adventurous
 You might already be very familiar with Docker and Kubernetes. If that is the case you can choose to follow the labs with something a little less mainstream. 
