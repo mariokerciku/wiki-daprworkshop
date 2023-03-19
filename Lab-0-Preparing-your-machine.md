@@ -21,11 +21,10 @@ If you cannot do this, you will use a Linux Virtual Machine to run Linux contain
 ## Visual Studio as an IDE
 The most preferable Integrated Development Environment (IDE) is Visual Studio 2022 if you are using Windows. For MacOS you can use Visual Studio for Mac. You can find all editions, including a free Community edition here: https://visualstudio.microsoft.com/downloads/
 
-<img src="https://user-images.githubusercontent.com/5504642/173638496-43f1a8d9-4c8f-4c30-966c-50e04f5da792.png" width="600" />
+<img src="https://user-images.githubusercontent.com/5504642/226197270-b6fadca7-fd83-4318-a5ee-563232b5140f.png" width="600" />
 
 Visual Studio Code is available for all three platforms Windows, Linux and MacOS. On Linux Visual Studio Code is recommended, as there is no Visual Studio for Linux available. 
-
-<img src="https://user-images.githubusercontent.com/5504642/173638826-9b27c4ed-b500-4156-8009-f0cad3138b3d.png" width="300" />
+<img src="https://user-images.githubusercontent.com/5504642/226197221-a8efcf83-00ae-430c-9600-5f97647d668e.png" width="400" />
 
 ## Add Visual Studio Code extensions
 If you have installed Visual Studio Code, you can add extensions. A couple of Visual Studio Code extensions are required to assist you during the labs. You can install them before the workshop or at the start of labs that require them.
