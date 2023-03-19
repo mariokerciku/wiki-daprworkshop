@@ -91,7 +91,8 @@ Place an order and verify that the mail arrives at the SMTP mail server:
 The **catalog** service has a scheduled task to calculate a special offer ticket price at an interval of every 5 minutes. You can easily create a binding that uses a cron job schedule to execute a method in a controller. Whenever the cron job trigger based on the elapsed time, the Dapr cron binding will make a call to the container it accompanies on a well-known endpoint based on the name of the cron component.
 
 Copy the `cron.yaml` file from `lab-resources` to `components/docker-compose`. Open the file to inspect the `bindings.cron` type component is defined in it. The schedule is defined at `"@every 5m"` and scoped to the catalog service.
-Whenever the period of the schedule is passed, the sidecar will issue an HTTP POST request to the `/scheduled` endpoint of the service it is connected to. In this case it is only the catalog sidecar that has the cron binding, so an endpoint of the service.
+Whenever the period of the schedule is passed, the sidecar will issue an HTTP POST request to the `/scheduled` endpoint of the service it is connected to. The endpoint is defined by the name of the component, which is `scheduled`.
+In this case the `cron.yaml` file is scoped to include the catalog service only. Consequently, the catalog sidecar has the cron binding and the catalog service will need the endpoint.
 
 To create a simple `/scheduled` endpoint we can use a Minimal Web API through a mapped POST request.
 In the `Program.cs` find the call to `UseAuthorization` and add a call to `MapPost`:
@@ -108,4 +109,4 @@ app.MapPost("scheduled", (ILoggerFactory factory, IEventRepository repository) =
 
 Start the application and check the output from the logger in the output window. It should show a logged call to the scheduled endpoint.
 
-<img src="https://user-images.githubusercontent.com/5504642/173680430-486bc8e9-93cb-4ccc-a643-53817fd8e431.png" width="300" />
+<img src="https://user-images.githubusercontent.com/5504642/173680430-486bc8e9-93cb-4ccc-a643-53817fd8e431.png" width="400" />
