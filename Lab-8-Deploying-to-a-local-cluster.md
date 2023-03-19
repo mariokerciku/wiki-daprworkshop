@@ -62,9 +62,9 @@ The dashboard can be found at this endpoint: http://localhost:8001/api/v1/namesp
 You can use a service account for login into the dashboard. First, you will need to create a new service account and give it the proper role-binding to access the dashboard. Use the two files `lab-resources/kubernetes/dashboard-user.yaml` and `lab-resources/kubernetes/dashboard-rolebinding.yaml` from the resources folder and apply these to the cluster. 
 
 ```cmd
-cd lab-resources
-kubectl apply -f .\dashboard-user.yaml
-kubectl apply -f .\dashboard-rolebinding.yaml
+cd lab-resources/kubernetes
+kubectl apply -f ./dashboard-user.yaml
+kubectl apply -f ./dashboard-rolebinding.yaml
 cd ..
 ```
 
