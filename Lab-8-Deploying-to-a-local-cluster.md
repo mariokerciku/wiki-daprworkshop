@@ -9,10 +9,7 @@ Verify that your cluster is running and that you are connected to it with the Ku
 kubectl config get-contexts
 ```
 
-The output various per cluster type.
-
-Minikube:
-
+The output various per cluster type. In Minikube the output resembles:
 <img src="https://user-images.githubusercontent.com/5504642/173692060-36dab09d-8ef9-4279-a6b1-125a5c4afc9e.png" width="700" />
 
 Kubernetes in Docker Desktop:
