@@ -277,4 +277,4 @@ Examine the output and check the value for the `EXTERNAL-IP` of the `frontend`. 
 ```cmd
 kubectl port-forward svc/frontend 8081:8080
 ```
-Try to visit the website at http://localhost:8081 if you create the forward to the frontend servicec port.
+Try to visit the website at http://localhost:8081 if you create the forward to the frontend service port. In GitHub Codespaces you need to go to the Ports tab to create a tunnel to the Kubernetes cluster. 
