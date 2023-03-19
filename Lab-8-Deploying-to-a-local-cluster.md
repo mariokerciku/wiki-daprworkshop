@@ -39,7 +39,8 @@ Verify a succesful installation by starting dashboard in a separate terminal win
 ```cmd
 dapr dashboard -k
 ```
-![image](https://user-images.githubusercontent.com/5504642/174170417-93db9e64-8b6d-404f-822c-7a00acc4ad04.png)
+
+![image](https://user-images.githubusercontent.com/5504642/226211659-d7e4c36b-6bdd-4309-ba3f-70f0cdfc7d8c.png)
 
 Notice that no Dapr applications are running yet. This is expected, as we did not deploy anything to the cluster yet.
 Check the Dapr components, configuration and control plane tabs as well.
