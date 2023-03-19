@@ -26,8 +26,7 @@ Prepare your cluster by installing the Dapr runtime and control plane. Verify th
 ```cmd
 dapr --version
 ```
-
-<img src="https://user-images.githubusercontent.com/5504642/226211491-ea987af8-4a1b-41e0-82a4-c8a47f225d8d.png" width="200" />
+![image](https://user-images.githubusercontent.com/5504642/226211532-8a7e9b7b-a95f-4e6d-bf6b-3f71c99f949f.png)
 
 Run initialization for Dapr on local Kubernetes cluster
 ```cmd
