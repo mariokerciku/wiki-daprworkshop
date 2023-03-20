@@ -219,14 +219,20 @@ docker push $LOGIN_SERVER/frontend:latest
 ```
 Go to the container registry in your Azure portal and check in the repositories section if the images have been pushed successfully. You can also check using Visual Studio Code or GitHub Codespaces by using the Registries section of the Docker extension.
 
-![image](https://user-images.githubusercontent.com/5504642/226220837-a7677c3a-6ede-4a77-8c9d-fe70cb155401.png)
+<img src="https://user-images.githubusercontent.com/5504642/226221038-aaa1d854-ffd8-431e-aa27-b07dc16e0f4d.png" width="400" />
 
 ## Deploying pods to AKS
 The AKS cluster needs to be able to pull images from the private container registry. You can give the AKS cluster access to the container registry 
-```cmd
+```PowerShell
 $REGISTRY_ID = az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv
 az aks update --name DaprWorkshopCluster --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
 ```
+```cmd
+REGISTRY_ID=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv)
+az aks update --name DaprWorkshopCluster --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+```
+
+
 This allows us to deploy the pods for the catalog, ordering and frontend components of the GloboTicket application.
 ```cmd
 kubectl apply -f .\catalog.yaml
