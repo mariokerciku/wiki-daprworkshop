@@ -82,7 +82,7 @@ After the creation has completed successfully, you should have a running cluster
 az aks get-credentials -n $CLUSTER_NAME -g $RESOURCEGROUP -a
 ```
 
-This command requires administrator priviliges (which you have to your own cluster) to get the credentials needed to communicate with the cluster. These will be stored in the `config` file in your `~/.kube` or `%USERPROFILE%\.kube` folder. 
+This command requires administrator privileges (which you have to your own cluster) to get the credentials needed to communicate with the cluster. These will be stored in the `config` file in your `~/.kube` or `%USERPROFILE%\.kube` folder. 
 
 Examine the Kubernetes tab in Visual Studio Code or GitHub Codespaces. 
 
@@ -173,7 +173,7 @@ kubectl apply -f ./appconfig.yaml
 
 Look at Dapr dashboard again.
 
-<img src="https://user-images.githubusercontent.com/5504642/226218987-4fb64280-acad-4c48-8fce-40bf169ed98d.png" width="700" />
+<img src="https://user-images.githubusercontent.com/5504642/226218987-4fb64280-acad-4c48-8fce-40bf169ed98d.png" width="800" />
 
 # Application containers
 The Dapr dependencies are now in place. Now you can deploy the pods for each of the three containers `ordering`, `frontend` and `catalog`.
@@ -181,7 +181,9 @@ The Dapr dependencies are now in place. Now you can deploy the pods for each of 
 This time we will need a container registry where the three images are pushed. This way the AKS cluster can reach the registry to pull the images. Having local images will not work. You can create your own private container registry in Azure. Pick a unique name (in lowercase) for your registry and set it in the first line of the following fragment:
 
 ```cmd
-$REGISTRY_NAME = <your-container-registry> 
+$REGISTRY_NAME = "<your-container-registry>" # PowerShell
+REGISTRY_NAME=<your-container-registry> # Bash
+
 az acr create --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --sku Basic
 az acr login --name $REGISTRY_NAME
 ```
@@ -194,7 +196,7 @@ Since we now have a container registry, it is required to change the name of the
 
 ```cmd
 $LOGIN_SERVER=az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv
-$env:DOCKER_REGISTRY=$LOGIN_SERVER
+$env:DOCKER_REGISTRY=$LOGIN_SERVER+'/'
 ```
 or in Linux:
 ```
@@ -212,7 +214,7 @@ docker images
 and verify in the output of the last command that the new images are available, with the name of the registry prepended, for example `daprworkshopcontainerregistry.azurecr.io/catalog:latest`.
 
 ## Pushing images to container registry
-It is now easy to push the images to the registry. You are already logged in and the containers have the `latest` tag already. You can change the tag to be a specific version if you want to.
+It is now easy to push the images to the registry. You are already logged in and the containers have the `latest` tag already. You can change the tag to a specific version if you want to.
 ```cmd
 docker push $LOGIN_SERVER/catalog:latest
 docker push $LOGIN_SERVER/ordering:latest
@@ -227,14 +229,27 @@ The AKS cluster needs to be able to pull images from the private container regis
 
 ```PowerShell
 $REGISTRY_ID = az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv
-az aks update --name $CLUSTER_NAME--resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+az aks update --name $CLUSTER_NAME --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
 ```
+
 ```cmd
 REGISTRY_ID=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv)
 az aks update --name $CLUSTER_NAME --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
 ```
 
 This allows us to deploy the pods for the catalog, ordering and frontend components of the GloboTicket application.
+Make sure to edit these three files `frontend.yaml`, `catalog.yaml` and `ordering.yaml` to have the right name for your Azure Container Registry.
+
+```yaml
+    spec:
+      containers:
+      - name: frontend
+        image: daprworkshopcontainerregistry.azurecr.io/frontend:latest # Replace name of registry
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+```
+After you have made the changes apply the three deployments to your AKS cluster.
 ```cmd
 cd lab-resources/azure
 kubectl apply -f ./catalog.yaml
