@@ -7,12 +7,12 @@ You will be using PowerShell to run most of the CLI commands for Azure. Make sur
 The Azure resources will be created inside a single resource group. Ideally, you will split the resources over multiple resource groups. In this lab there is a single group to contain all resources, which will make cleaning resources easier.
 
 Set two variables for the name of the resource group and its location. You can choose an Azure region that is most convenient for you.
-
+PowerShell:
 ```PowerShell
 $RESOURCEGROUP = "DaprWorkshop"
 $LOCATION = "westeurope"
 ```
-
+Linux:
 ```cmd
 RESOURCEGROUP=DaprWorkshop
 LOCATION=westeurope
@@ -167,6 +167,7 @@ kubectl apply -f ./cron.yaml
 kubectl apply -f ./email.yaml
 kubectl apply -f ./redis-pubsub.yaml
 kubectl apply -f ./redis-statestore.yaml
+cd ../kubernetes
 kubectl apply -f ./appconfig.yaml
 ```
 
@@ -235,6 +236,7 @@ az aks update --name $CLUSTER_NAME --resource-group $RESOURCEGROUP --attach-acr 
 
 This allows us to deploy the pods for the catalog, ordering and frontend components of the GloboTicket application.
 ```cmd
+cd lab-resources/azure
 kubectl apply -f ./catalog.yaml
 kubectl apply -f ./ordering.yaml
 kubectl apply -f ./frontend.yaml
