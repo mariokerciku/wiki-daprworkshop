@@ -222,22 +222,22 @@ Go to the container registry in your Azure portal and check in the repositories 
 <img src="https://user-images.githubusercontent.com/5504642/226221038-aaa1d854-ffd8-431e-aa27-b07dc16e0f4d.png" width="400" />
 
 ## Deploying pods to AKS
-The AKS cluster needs to be able to pull images from the private container registry. You can give the AKS cluster access to the container registry 
+The AKS cluster needs to be able to pull images from the private container registry. You can give the AKS cluster access to the container registry by executing this command in PowerShell or Linux:
+
 ```PowerShell
 $REGISTRY_ID = az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv
-az aks update --name DaprWorkshopCluster --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+az aks update --name $CLUSTER_NAME--resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
 ```
 ```cmd
 REGISTRY_ID=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv)
-az aks update --name DaprWorkshopCluster --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+az aks update --name $CLUSTER_NAME --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
 ```
-
 
 This allows us to deploy the pods for the catalog, ordering and frontend components of the GloboTicket application.
 ```cmd
-kubectl apply -f .\catalog.yaml
-kubectl apply -f .\ordering.yaml
-kubectl apply -f .\frontend.yaml
+kubectl apply -f ./catalog.yaml
+kubectl apply -f ./ordering.yaml
+kubectl apply -f ./frontend.yaml
 ```
 Follow the deployment of the pods and services that are defined in the deployment manifests. After all is running correctly, find the public IP address for the cluster:
 
