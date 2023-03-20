@@ -7,14 +7,16 @@ You will be using PowerShell to run most of the CLI commands for Azure. Make sur
 The Azure resources will be created inside a single resource group. Ideally, you will split the resources over multiple resource groups. In this lab there is a single group to contain all resources, which will make cleaning resources easier.
 
 Set two variables for the name of the resource group and its location. You can choose an Azure region that is most convenient for you.
-PowerShell:
+
+Note that the commands you are going to use in your terminal window depend on the type of shell you have. If you are running your commands locally in a Windows PowerShell Terminal, you will need to look for the instructions in this lab that indicate PowerShell. For most other cases you are using a bash or ash terminal in Linux or Windows Subsystem for Linux. There are separate instructions for bash commands, as these are slightly different.
+
 ```PowerShell
-$RESOURCEGROUP = "DaprWorkshop"
+$RESOURCE_GROUP = "DaprWorkshop"
 $LOCATION = "westeurope"
 ```
-Linux:
+Bash:
 ```cmd
-RESOURCEGROUP=DaprWorkshop
+RESOURCE_GROUP=DaprWorkshop
 LOCATION=westeurope
 ```
 
@@ -34,7 +36,7 @@ az account set --subscription <your-subscription-id>
 Create a resource group in your subscription
 
 ```
-az group create -n $RESOURCEGROUP -l $LOCATION
+az group create -n $RESOURCE_GROUP -l $LOCATION
 ```
 
 We are going to use the preview features of `OIDC issuer` and `Pod Identity` in Azure. You will have to register these features in your Azure subscription.
@@ -65,8 +67,10 @@ You are now ready to install a real Azure based Kubernetes cluster. Execute the 
 - Pod Identity - Allows pods to run with a specific managed service principal identity 
 
 ```cmd
-$CLUSTER_NAME = "DaprWorkshopCluster"
-az aks create --resource-group $RESOURCEGROUP --location $LOCATION --name $CLUSTER_NAME --node-count 1 --enable-addons http_application_routing --generate-ssh-keys --enable-managed-identity --enable-oidc-issuer --enable-pod-identity --network-plugin azure 
+$CLUSTER_NAME = "DaprWorkshopCluster" # PowerShell
+CLUSTER_NAME=DaprWorkshopCluster # Bash
+
+az aks create --resource-group $RESOURCE_GROUP --location $LOCATION --name $CLUSTER_NAME --node-count 1 --enable-addons http_application_routing --generate-ssh-keys --enable-managed-identity --enable-oidc-issuer --enable-pod-identity --network-plugin azure 
 ```
 
 You can read some additional information on these features here:
@@ -79,7 +83,7 @@ At this point your cluster is going to be created. This will take some time and 
 After the creation has completed successfully, you should have a running cluster. The next step is to switch the `kubectl` context to use the remote AKS cluster instead of the local cluster. 
 
 ```cmd
-az aks get-credentials -n $CLUSTER_NAME -g $RESOURCEGROUP -a
+az aks get-credentials -n $CLUSTER_NAME -g $RESOURCE_GROUP -a
 ```
 
 This command requires administrator privileges (which you have to your own cluster) to get the credentials needed to communicate with the cluster. These will be stored in the `config` file in your `~/.kube` or `%USERPROFILE%\.kube` folder. 
@@ -184,7 +188,7 @@ This time we will need a container registry where the three images are pushed. T
 $REGISTRY_NAME = "<your-container-registry>" # PowerShell
 REGISTRY_NAME=<your-container-registry> # Bash
 
-az acr create --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --sku Basic
+az acr create --resource-group $RESOURCE_GROUP --name $REGISTRY_NAME --sku Basic
 az acr login --name $REGISTRY_NAME
 ```
 ![image](https://user-images.githubusercontent.com/5504642/174288495-7956fe8d-9b1a-4da9-9a7b-6894583294cd.png)
@@ -195,12 +199,12 @@ You can check in the Azure portal whether the Azure Container Registry (ACR) was
 Since we now have a container registry, it is required to change the name of the container images to include the registry name. We can use an environment variable to help is out. Set the DOCKER_REGISTRY variable to be the `id` of your ACR instance.
 
 ```cmd
-$LOGIN_SERVER=az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv
+$LOGIN_SERVER=az acr show --resource-group $RESOURCE_GROUP --name $REGISTRY_NAME --query loginServer -o tsv
 $env:DOCKER_REGISTRY=$LOGIN_SERVER+'/'
 ```
 or in Linux:
 ```
-LOGIN_SERVER=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv)
+LOGIN_SERVER=$(az acr show --resource-group $RESOURCE_GROUP --name $REGISTRY_NAME --query loginServer -o tsv)
 export DOCKER_REGISTRY=$LOGIN_SERVER'/'
 ```
 This environment variable is used when building the container images as specified in the respective `Dockerfile` files. Check the beginning of one of these files to see how it is being used.
@@ -228,13 +232,13 @@ Go to the container registry in your Azure portal and check in the repositories 
 The AKS cluster needs to be able to pull images from the private container registry. You can give the AKS cluster access to the container registry by executing this command in PowerShell or Linux:
 
 ```PowerShell
-$REGISTRY_ID = az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv
-az aks update --name $CLUSTER_NAME --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+$REGISTRY_ID = az acr show --resource-group $RESOURCE_GROUP --name $REGISTRY_NAME --query id -o tsv
+az aks update --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --attach-acr $REGISTRY_ID
 ```
 
 ```cmd
-REGISTRY_ID=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query id -o tsv)
-az aks update --name $CLUSTER_NAME --resource-group $RESOURCEGROUP --attach-acr $REGISTRY_ID
+REGISTRY_ID=$(az acr show --resource-group $RESOURCE_GROUP --name $REGISTRY_NAME --query id -o tsv)
+az aks update --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --attach-acr $REGISTRY_ID
 ```
 
 This allows us to deploy the pods for the catalog, ordering and frontend components of the GloboTicket application.
