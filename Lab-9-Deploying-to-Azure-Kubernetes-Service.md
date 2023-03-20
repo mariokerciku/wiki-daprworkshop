@@ -198,6 +198,7 @@ $env:DOCKER_REGISTRY=$LOGIN_SERVER
 or in Linux:
 ```
 LOGIN_SERVER=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv)
+export DOCKER_REGISTRY=$LOGIN_SERVER'/'
 ```
 This environment variable is used when building the container images as specified in the respective `Dockerfile` files. Check the beginning of one of these files to see how it is being used.
 
@@ -207,18 +208,18 @@ Create the images again by building a `Release` version of the code
 docker-compose build 
 docker images
 ```
-and verify in the output of the last command that the new images are available, with the name of the registry prepended, for example `daprworkshopcontainerregistry.azurecr.io/globoticket-dapr-catalog:latest`.
+and verify in the output of the last command that the new images are available, with the name of the registry prepended, for example `daprworkshopcontainerregistry.azurecr.io/catalog:latest`.
 
 ## Pushing images to container registry
 It is now easy to push the images to the registry. You are already logged in and the containers have the `latest` tag already. You can change the tag to be a specific version if you want to.
 ```cmd
-docker push $LOGIN_SERVER/globoticket-dapr-catalog:latest
-docker push $LOGIN_SERVER/globoticket-dapr-ordering:latest
-docker push $LOGIN_SERVER/globoticket-dapr-frontend:latest
+docker push $LOGIN_SERVER/catalog:latest
+docker push $LOGIN_SERVER/ordering:latest
+docker push $LOGIN_SERVER/frontend:latest
 ```
 Go to the container registry in your Azure portal and check in the repositories section if the images have been pushed successfully. You can also check using Visual Studio Code or GitHub Codespaces by using the Registries section of the Docker extension.
 
-![image](https://user-images.githubusercontent.com/5504642/174289523-c71c8e5f-a787-4bb9-bde9-95ac38e75b66.png)
+![image](https://user-images.githubusercontent.com/5504642/226220837-a7677c3a-6ede-4a77-8c9d-fe70cb155401.png)
 
 ## Deploying pods to AKS
 The AKS cluster needs to be able to pull images from the private container registry. You can give the AKS cluster access to the container registry 
