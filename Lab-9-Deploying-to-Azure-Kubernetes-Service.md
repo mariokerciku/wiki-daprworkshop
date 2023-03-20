@@ -8,10 +8,16 @@ The Azure resources will be created inside a single resource group. Ideally, you
 
 Set two variables for the name of the resource group and its location. You can choose an Azure region that is most convenient for you.
 
-```cmd
+```PowerShell
 $RESOURCEGROUP = "DaprWorkshop"
 $LOCATION = "westeurope"
 ```
+
+```cmd
+RESOURCEGROUP=DaprWorkshop
+LOCATION=westeurope
+```
+
 Login to your Azure account and check whether you have selected the right subscription:
 
 ```cmd
@@ -142,7 +148,7 @@ kubectl create deployment maildev --image maildev/maildev
 - Secret for database
 ```cmd
 kubectl create secret generic catalogconnectionstring --from-literal=catalogconnectionstring="Event Catalog Connection String from Kubernetes"
-kubectl apply -f .\kubernetes-secretstore.yaml
+kubectl apply -f ./kubernetes-secretstore.yaml
 ```
 - State store and pub/sub with Redis
 ```cmd
@@ -157,21 +163,21 @@ Open a terminal and navigate to the `lab-resources/azure` directory. You do not 
 
 ```cmd
 cd lab-resources/azure
-kubectl apply -f .\cron.yaml
-kubectl apply -f .\email.yaml
-kubectl apply -f .\redis-pubsub.yaml
-kubectl apply -f .\redis-statestore.yaml
-kubectl apply -f .\appconfig.yaml
+kubectl apply -f ./cron.yaml
+kubectl apply -f ./email.yaml
+kubectl apply -f ./redis-pubsub.yaml
+kubectl apply -f ./redis-statestore.yaml
+kubectl apply -f ./appconfig.yaml
 ```
 
 Look at Dapr dashboard again.
 
-<img src="https://user-images.githubusercontent.com/5504642/174286507-e3a035b5-d071-4302-add7-909931d17960.png" width="500" />
+<img src="https://user-images.githubusercontent.com/5504642/226218987-4fb64280-acad-4c48-8fce-40bf169ed98d.png" width="700" />
 
 # Application containers
 The Dapr dependencies are now in place. Now you can deploy the pods for each of the three containers `ordering`, `frontend` and `catalog`.
 
-This time we will need a container registry where the three images are pushed. This way the AKS cluster can reach the registry to pull the images. Having local images will not work. You can create your own private container registry in Azure. Pick a unique name for your registry and set it in the first line of the following fragment:
+This time we will need a container registry where the three images are pushed. This way the AKS cluster can reach the registry to pull the images. Having local images will not work. You can create your own private container registry in Azure. Pick a unique name (in lowercase) for your registry and set it in the first line of the following fragment:
 
 ```cmd
 $REGISTRY_NAME = <your-container-registry> 
@@ -188,6 +194,10 @@ Since we now have a container registry, it is required to change the name of the
 ```cmd
 $LOGIN_SERVER=az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv
 $env:DOCKER_REGISTRY=$LOGIN_SERVER
+```
+or in Linux:
+```
+LOGIN_SERVER=$(az acr show --resource-group $RESOURCEGROUP --name $REGISTRY_NAME --query loginServer -o tsv)
 ```
 This environment variable is used when building the container images as specified in the respective `Dockerfile` files. Check the beginning of one of these files to see how it is being used.
 
