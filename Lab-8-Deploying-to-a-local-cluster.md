@@ -48,7 +48,7 @@ Check the Dapr components, configuration and control plane tabs as well.
 ## Kubernetes dashboard on Kubernetes 1.24+
 Kubernetes also offers a dashboard that you can use to inspect the cluster. Install the dashboard by applying the manifest for it:
 ```cmd
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 ```
 
 You can reach the dashboard by running a proxy:
