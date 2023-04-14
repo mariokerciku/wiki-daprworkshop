@@ -16,4 +16,4 @@ The files for the labs for this workshop can be found at https://github.com/Xpir
 - Lab 7 - [Using State Store building block](Lab-7-Using-State-Store-building-block)
 - Lab 8 - [Deploying to a local cluster](Lab-8-Deploying-to-a-local-cluster)
 - Lab 9 - [Deploying to Azure Kubernetes Service](Lab-9-Deploying-to-Azure-Kubernetes-Service)
-- Lab 10 - [Switching-to-Azure-resources](Lab-10-Switching-to-Azure-resources)
+- Lab 10 - [Switching to Azure resources](Lab-10-Switching-to-Azure-resources)
