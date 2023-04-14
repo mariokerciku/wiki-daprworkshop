@@ -44,9 +44,13 @@ az storage container create --name "statestore" --public-access off --connection
 ```
 
 Look at the `azure-statestore.yaml` definition of the statestore component for Azure Blob Storage. It has an account name and container name and requires a `blob-secret` secret stored inside the secret store of Kubernetes.
-Store the account key secret you extracted earlier into the Kubernetes secret store and apply the new state component configuration to the cluster and restart the three pods of the Globoticket application.
+Store the account key secret you extracted earlier into the Kubernetes secret store. For this we will define a new secret store component `secretstore` of type Kubernetes. The standard name of the default secret store in Kubernetes is actually `kubernetes`. By defining the same component with the name `secretstore` we can be more flexible in swapping the secret store implementations.
 ```cmd
-kubectl create secret generic blob-secret --from-literal=account-key="$STORAGE_ACCOUNT_KEY"
+kubectl apply -f ./kubernetes-secretstore.yaml
+kubectl create secret generic blob-secret --from-literal=blob-secret="$STORAGE_ACCOUNT_KEY"
+```
+Next, apply the new state component configuration to the cluster and restart the three pods of the Globoticket application.
+```cmd
 kubectl apply -f ./azure-statestore.yaml
 kubectl rollout restart deployment frontend
 kubectl rollout restart deployment ordering
@@ -169,8 +173,17 @@ kubectl create secret generic keyvault-secret --from-literal=azureclientsecret="
 
 Of course, you also need to store the three secrets in the Azure Key vault to reference them in the three situations for configuration, state and pubsub component.
 ```cmd
-az keyvault secret set --name catalogconnectionstring --vault-name $KEYVAULT --value "Event Catalog DB Connection string from Azure KeyVault"
+az keyvault secret set --name catalogconnectionstring --vault-name $KEYVAULT --value "Event Catalog DB Connection string from Azure Key vault"
 az keyvault secret set --name blob-secret --vault-name $KEYVAULT --value $STORAGE_ACCOUNT_KEY
 az keyvault secret set --name servicebus-secret --vault-name $KEYVAULT --value $SERVICE_BUS_CONNECTION_STRING
 ```
 
+Since we took some precautions to name the secret store component `secretstore` we do not have to change the yaml definitions of the three component definitions. 
+Finally, you need to restart all three pods to read the configuration values from the new secret store, which is now Azure Key vault.
+Visit the homepage of the Globoticket website again and check the logs of the `catalog` service. 
+
+```cmd
+kubectl get pods
+kubectl logs <instance-name-of-catalog-pods>
+```
+Check  whether the logs indicate a connection string that has `Key vault` in it.
