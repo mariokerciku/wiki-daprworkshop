@@ -43,7 +43,7 @@ Next, we create a storage container in the storage account to store the state of
 az storage container create --name "statestore" --public-access off --connection-string $STORAGE_CONNECTION_STRING
 ```
 
-Look at the azure-statestore.yaml definition of the statestore component for Azure Blob Storage. It has an account name and container name and requires a 'blob-secret' secret stored inside the secret store of Kubernetes.
+Look at the `azure-statestore.yaml` definition of the statestore component for Azure Blob Storage. It has an account name and container name and requires a `blob-secret` secret stored inside the secret store of Kubernetes.
 Store the account key secret you extracted earlier into the Kubernetes secret store and apply the new state component configuration to the cluster and restart the three pods of the Globoticket application.
 ```cmd
 kubectl create secret generic blob-secret --from-literal=account-key="$STORAGE_ACCOUNT_KEY"
@@ -142,14 +142,17 @@ The output contains the application ID of the newly created app registration:
 ```
 Store the `appId` value in a variable, as you will need it in a moment:
 ```cmd
+# PowerShell
 $APP_ID = "22119ad4-3599-4808-a884-5463446db6e1"
+
+# Bash
 APP_ID=22119ad4-3599-4808-a884-5463446db6e1
 ```
 Reset the credential associated with the application ID:
 ```cmd
 az ad app credential reset --id $APP_ID --years 2 
 ```
-This will give the exact output we need to configure the Azure Key vault as the secret store component. 
+This will give the exact output we need to configure the Azure Key vault as the secret store component. The output should resemble this:
 ```
 The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
 {
@@ -157,11 +160,6 @@ The output includes credentials that you must protect. Be sure that you do not i
   "password": "qpe8Q~hyaBfcRYgT7cmb_z5U2sYEkMRKXouuFdzQ",
   "tenant": "d123d456-1234-4567-b1cd-1aaf1e228995"
 }
-```
-
-Extract the 
-```cmd
-az ad app credential reset --id $APP_ID --years 2
 ```
 
 You need to create a secret again to hold the password of the app registrations client details.
