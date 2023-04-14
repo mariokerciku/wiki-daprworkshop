@@ -51,20 +51,20 @@ name: Build and deploy frontend
 on:
   workflow_dispatch:
   push:
-    branches: [ "mygithubhandle-automation" ]
+    branches: [ "vriesmarcel-automation" ]
     paths:
     - 'frontend/**'
+env:
+  imageRepository: 'frontend'
+  containerRegistry: 'psgloboticket.azurecr.io'
+  dockerfilePath: 'frontend/Dockerfile'
+  deploymentFile: 'frontend.yaml'
+  namespace: 'globoticket'
 jobs:
 
   build:
 
-    runs-on: ["selfhosted", "marcel-devries"]
-    env:
-      imageRepository: 'frontend'
-      containerRegistry: 'psgloboticket.azurecr.io'
-      dockerfilePath: 'frontend/Dockerfile'
-      deploymentFile: 'frontend.yaml'
-      namespace: 'globoticket'
+    runs-on: ["self-hosted", "marcel-devries"]
 
     steps:
     - uses: actions/checkout@v3
@@ -98,25 +98,27 @@ jobs:
         path: ${{github.workspace}}/lab-resources/kubernetes/${{env.deploymentFile}}
         
   deploy:
-    runs-on:  ["selfhosted", "marcel-devries"]
+    runs-on:  ["self-hosted", "marcel-devries"]
     needs: build
     steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
       with:
         name: deployfile
-          
-    - uses: Azure/k8s-deploy@v4
-      with:
-        namespace: 'globoticket'
-        manifests: |
-            ./${{env.deploymentFile}}
+    
+    - name: Run kubectl on frontend.yaml file to deploy new version
+      run: |
+        kubectl apply -f ./${{env.deploymentFile}}
 ```
 
 After saving this file, we need to commit this to the GitHub repository to execute the actions.
 We need to push this to the branch name we denoted in the YAML file. In my case, this is `vriesmarcel-automation`, but this should be a unique branch name with your GitHub handle instead of mine.
 
-The moment you have pushed the branch, you can go to the actions tab and see if the workflow is running on your runner.
+The moment you have pushed the branch, you can go to the actions tab and start the workflow manually.
+This looks like follows:
+<img width="1140" alt="image" src="https://user-images.githubusercontent.com/3602709/232148536-5e22eaa6-a701-4f81-b61f-d8989ca61461.png">
+
+Ensure Minikube is running on your machine since this is what the workflow expects.
 
 
 
