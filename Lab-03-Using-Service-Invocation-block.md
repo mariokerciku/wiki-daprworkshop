@@ -1,7 +1,7 @@
 In this lab you will introduce service invocation using Dapr. The service invocation block is used by the frontend service when calling the catalog and ordering service. You will implement two different ways to interact with other services via the Dapr sidecars.
 
 ## Inspecting HTTP client implementation
-Open the `Program.cs` file and locate the section that adds two HTTP client registrations for the `HttpClientFactory`. 
+Open the `Program.cs` file of the frontend service and locate the section that adds two HTTP client registrations for the `HttpClientFactory`. 
 
 ```C#
 builder.Services.AddHttpClient<IEventCatalogService, EventCatalogService>(
