@@ -63,7 +63,7 @@ The SMTP server implementation for the development environment on your laptop is
 ```yaml
   maildev:
     container_name: "smtpserver"
-    image: "maildev/maildev:2.0.5" # https://hub.docker.com/r/maildev/maildev
+    image: "maildev/maildev:2.1.0" # https://hub.docker.com/r/maildev/maildev
     ports:
       - "1025:1025"
       - "1080:1080"
