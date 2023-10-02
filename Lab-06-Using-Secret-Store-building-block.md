@@ -51,7 +51,7 @@ The original value for the event catalog connection string is located in `appset
 
 Run the application again to check that the new value from the secrets file of the store is actually used.
 
-You should see the output in the log of the catalog service.
+You should see the output in the log of the catalog service after refreshing the home page of the GloboTicket website.
 
 ```
 info: GloboTicket.Catalog.Repositories.EventRepository[0]
