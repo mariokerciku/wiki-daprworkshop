@@ -35,7 +35,7 @@ At the bottom of the Redis definition in the `docker-compose.yaml` add a volume 
 ```
   redis:
     container_name: "redis"
-    image: "redis:6.2-alpine"
+    image: "redis:7.2-alpine"
     ports:
       - "6379"
     networks:
