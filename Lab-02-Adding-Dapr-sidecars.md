@@ -43,7 +43,7 @@ You will add these to the docker-compose file as well, below the sidecar definit
 ```yaml
   redis:
     container_name: "redis"
-    image: "redis:6.2-alpine"
+    image: "redis:7.2-alpine"
     ports:
       - "6379"
     networks:
@@ -51,7 +51,7 @@ You will add these to the docker-compose file as well, below the sidecar definit
       
   zipkin:
     container_name: "zipkin"
-    image: "openzipkin/zipkin:2.23.16"
+    image: "openzipkin/zipkin:2.24"
     ports:
       - 9412:9411
     networks:
