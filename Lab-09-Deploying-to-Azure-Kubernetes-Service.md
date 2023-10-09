@@ -42,7 +42,7 @@ az group create -n $RESOURCE_GROUP -l $LOCATION
 We are going to use the preview features of `OIDC issuer` and `Pod Identity` in Azure. You will have to register these features in your Azure subscription.
 
 ```cmd
-az feature register --name EnableOIDCIssuerPreview --namespace Microsoft.ContainerService
+az feature register --name EnableOIDCIssuerPreview --namespace Microsoft.ContainerService #this is deprecated and no longer needed
 az feature register --name EnablePodIdentityPreview --namespace Microsoft.ContainerService
 ```
 
