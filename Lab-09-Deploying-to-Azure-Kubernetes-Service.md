@@ -95,7 +95,7 @@ Examine the Kubernetes tab in Visual Studio Code or GitHub Codespaces.
 If the new node is not already the current active cluster, you can richt-click on the new node in the `clusters` section and select "Set as Current Cluster". Alternatively, you can select the cluster as the current in your configuration by running:
 
 ```cmd
-kubectl config use-context $CLUSTER_NAME
+kubectl config use-context $CLUSTER_NAME-admin
 ```
 
 To make absolutely sure you have the new cluster selected, verify that the correct context is being used:
