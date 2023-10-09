@@ -166,12 +166,11 @@ We need to register the Dapr components again. We will still use the 'default' n
 Open a terminal and navigate to the `lab-resources/azure` directory. You do not need to copy the files as you will only use these for Refer to the previous lab for details. The short steps are listed below:
 
 ```cmd
-cd lab-resources/azure
+cd lab-resources/kubernetes
 kubectl apply -f ./cron.yaml
 kubectl apply -f ./email.yaml
 kubectl apply -f ./redis-pubsub.yaml
 kubectl apply -f ./redis-statestore.yaml
-cd ../kubernetes
 kubectl apply -f ./appconfig.yaml
 ```
 
