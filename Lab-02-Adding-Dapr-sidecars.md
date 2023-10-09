@@ -15,7 +15,7 @@ Add a sidecar for the catalog service in the same `docker-compose.yml` file. Eve
 ```yaml
   catalog-dapr:
     container_name: "catalog-sidecar"
-    image: "daprio/daprd:1.11.3"
+    image: "daprio/daprd:1.11.4"
     command: [
       "./daprd",
      "-app-id", "catalog",
