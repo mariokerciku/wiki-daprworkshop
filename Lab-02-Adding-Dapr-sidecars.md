@@ -34,7 +34,7 @@ Notice how the image for this sidecar container is `daprio/daprd` and has a tag 
 
 Another important thing to note is that the network mode of the sidecar is defined as `service:catalog` indicating that the networks of the catalog and `catalog-dapr` containers are tightly connected. The net effect is that the two containers behave almost as if they are running in a pod like Kubernetes does. We will cover pods in more detail in a later lab.
 
-Repeat creating the sidecar definitions for both the frontend and ordering service, making sure that the 5 occurences of the service name (`catalog` in the fragment shown) are replaced to be 'frontend' and 'ordering' respectively.
+**Repeat creating the sidecar definitions for both the frontend and ordering service, making sure that the 5 occurences of the service name (`catalog` in the fragment shown) are replaced to be 'frontend' and 'ordering' respectively.**
 
 ## Additional dependencies for Dapr
 Since Dapr requires a number of extra dependencies for a state store, pub sub and telemetry, simple versions such as Redis Cache and Zipkin are used for local development. 
