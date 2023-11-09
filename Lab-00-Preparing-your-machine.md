@@ -156,7 +156,7 @@ You might already be very familiar with Docker and Kubernetes. If that is the ca
 ## Podman as Docker Desktop replacement
 If you want to try something other than Docker Desktop to manage containers you can also use Podman. Follow the instructions at https://podman.io/getting-started/installation to install the daemonless alternative to Docker. Podman also offers pods instead of only containers. It resembles pods from Kubernetes and allows having multiple containers inside a pod.
 
-## Install .NET preview version (for the adventurous)
+## Install .NET preview version
 You can also choose to install a preview version of the next .NET in case you want to experiment. You can find the latest releases, including the upcoming ones at: https://dotnet.microsoft.com/en-us/download/dotnet
 
 Download the appropriate version and install it on your machine. In the labs you will have to change the version of the SDK in the `.csproj` files by yourself. Also, the NuGet packages will need to be upgraded to the versions corresponding to the SDK used.
