@@ -10,12 +10,12 @@ Make sure you have familiarized yourself with the contents of the Docker Compose
 
 The first step is to add Dapr sidecars as companions of the three containers ordering, catalog and frontend. The Dapr sidecars are additional containers that also run as part of the container composition using Docker Compose.
 
-Add a sidecar for the catalog service in the same `docker-compose.yml` file. Even though the place is not relevant inside a Docker Compose yaml file, it might be best to place this fragment directly below the definition of the catalog service.
+Add a sidecar for the catalog service in the same `docker-compose.override.yml` file. Even though the place is not relevant inside a Docker Compose yaml file, it might be best to place this fragment directly below the definition of the catalog service.
 
 ```yaml
   catalog-dapr:
     container_name: "catalog-sidecar"
-    image: "daprio/daprd:1.11.4"
+    image: "daprio/daprd:1.12.0"
     command: [
       "./daprd",
      "-app-id", "catalog",
@@ -30,7 +30,7 @@ Add a sidecar for the catalog service in the same `docker-compose.yml` file. Eve
     network_mode: "service:catalog"
 ```
 
-Notice how the image for this sidecar container is `daprio/daprd` and has a tag of 1.11.3 for the Dapr version. Also, the name of the sidecar `catalog-dapr` reflects the fact that this sidecar belongs to the catalog service. The name of `catalog` appears in multiple places, such as app-id, the unique name of the Dapr application this sidecar belongs to. Dapr considers other containers running as applications.
+Notice how the image for this sidecar container is `daprio/daprd` and has a tag of 1.12.0 for the Dapr version. This version should match the version of Dapr you have installed. Also, the name of the sidecar `catalog-dapr` reflects the fact that this sidecar belongs to the catalog service. The name of `catalog` appears in multiple places, such as app-id, the unique name of the Dapr application this sidecar belongs to. Dapr considers other containers running as applications.
 
 Another important thing to note is that the network mode of the sidecar is defined as `service:catalog` indicating that the networks of the catalog and `catalog-dapr` containers are tightly connected. The net effect is that the two containers behave almost as if they are running in a pod like Kubernetes does. We will cover pods in more detail in a later lab.
 
@@ -38,7 +38,7 @@ Another important thing to note is that the network mode of the sidecar is defin
 
 ## Additional dependencies for Dapr
 Since Dapr requires a number of extra dependencies for a state store, pub sub and telemetry, simple versions such as Redis Cache and Zipkin are used for local development. 
-You will add these to the docker-compose file as well, below the sidecar definitions.
+You will add these to the docker-compose.override file as well, below the sidecar definitions.
 
 ```yaml
   redis:
@@ -57,6 +57,7 @@ You will add these to the docker-compose file as well, below the sidecar definit
     networks:
       - globoticket
 ```
+> Your `docker-compose.override.yml` file should now have a total of eight services.
 
 ## Adding Dapr configuration and components
 Dapr needs a configuration to work correctly, since it is configured in the Dapr sidecar. It also defines a folder for the components you are going to add later.
