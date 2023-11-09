@@ -55,12 +55,17 @@ app.MapControllers();
 app.MapSubscribeHandler(); // Add this line
 ```
 
-With these preparations, the only thing left to do is add a mapped subscription handler in a controller class. Open the `ordering/Controllers/OrderController` class and find the `Submit` method. Decorate the method with an additional attribute to indicate this is a subscription handler. It should be called whenever the `pubsub` component detects a new message on the `orders` topic. For this, include the following attribute:
+With these preparations, the only thing left to do is add a mapped subscription handler in a controller class. Open the `ordering/Controllers/OrderController` class and find the `Submit` method. Decorate the method with an additional attribute to indicate this is a subscription handler. It should be called whenever the `pubsub` component detects a new message on the `orders` topic. For this, include the `Topic` attribute:
 
 ```C#
-[Topic("pubsub", "orders")]
+    [Topic("pubsub", "orders")] // Add this line
+    [HttpPost("", Name = "SubmitOrder")]
+    public IActionResult Submit(OrderForCreation order)
 ```
 
-Also, include the `Dapr` namespace at the top of the file.
+Also, include the `Dapr` namespace at the top of the file:
+``` C#
+using Dapr;
+```
 
 Run your application again, place an order and see whether the order is still being received by the ordering service.
