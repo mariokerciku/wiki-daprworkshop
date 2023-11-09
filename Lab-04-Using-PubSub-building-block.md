@@ -69,3 +69,12 @@ using Dapr;
 ```
 
 Run your application again, place an order and see whether the order is still being received by the ordering service.
+
+## Finish lab
+You are all done. You have Pub/Sub messaging to your project. In the next lab you will continue using a Dapr binding.
+
+Stop running your application. In Visual Studio Code and GitHub CodeSpaces you can stop the composition by pressing Ctrl+C in the terminal window. 
+
+<img src="https://user-images.githubusercontent.com/5504642/173663285-5882128d-08a0-48cc-989a-804047beff89.png" width="400" />
+
+In Visual Studio 2022 you can press Shift+F5 or click on the red square stop icon in the Debug toolbar.
