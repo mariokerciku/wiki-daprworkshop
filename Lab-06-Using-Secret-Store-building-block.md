@@ -33,6 +33,8 @@ cd ..
 In the Program.cs file add the following block before the call to `Configure<CatalogOptions>`:
 
 ```C#
+builder.Services.Configure<CatalogOptions>(builder.Configuration); 
+//Add these lines:
 builder.WebHost.ConfigureAppConfiguration(config =>
 {
     var daprClient = new DaprClientBuilder().Build();
