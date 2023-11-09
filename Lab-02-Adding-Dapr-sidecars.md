@@ -99,3 +99,11 @@ If you are running in Codespaces go to your `Ports` tab and right-click the cont
 
 When you click on the `Run Query` button no results appear. This is because we do not use the Dapr sidecars yet, so nothing has really changed. The focus of the next lab is to use the sidecars for service invocation.
 
+## Finish lab
+You are all done. You have added Dapr sidecar to your application services. In the next lab you will start using Dapr by adding code to the application.
+
+Stop running your application. In Visual Studio Code and GitHub CodeSpaces you can stop the composition by pressing Ctrl+C in the terminal window. 
+
+<img src="https://user-images.githubusercontent.com/5504642/173663285-5882128d-08a0-48cc-989a-804047beff89.png" width="400" />
+
+In Visual Studio 2022 you can press Shift+F5 or click on the red square stop icon in the Debug toolbar.
