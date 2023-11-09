@@ -74,3 +74,13 @@ await orderingClient.InvokeMethodAsync<OrderForCreation>("ordering", "order", or
 Also, remove the code that validated the results from the invocation to the original `HttpClient`, since we don't need this anymore.
 
 Run the application again and place an order to see if the new invocation via the sidecar works. Verify the logs to see whether the order was processed.
+
+
+## Finish lab
+You are all done. You have the DaprClient to your frontend service. In the next lab you will continue using Dapr by adding pub/sub messaging to the application.
+
+Stop running your application. In Visual Studio Code and GitHub CodeSpaces you can stop the composition by pressing Ctrl+C in the terminal window. 
+
+<img src="https://user-images.githubusercontent.com/5504642/173663285-5882128d-08a0-48cc-989a-804047beff89.png" width="400" />
+
+In Visual Studio 2022 you can press Shift+F5 or click on the red square stop icon in the Debug toolbar.
