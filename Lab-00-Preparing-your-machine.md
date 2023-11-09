@@ -120,6 +120,7 @@ If you want to prepare ahead of time, you can execute this statement. In a later
 eval $(minikube docker-env) # for WSL or bash terminal
 & minikube -p minikube docker-env --shell powershell | Invoke-Expression # for PowerShell 
 ```
+> Repeat this action every time your codespace (re)starts.
 
 # Install Dapr
 Regardless of your setup, you will need to install the Dapr CLI and initialize the runtime. Dapr is a runtime that is installed through the command-line interface. You can download the CLI installation files from https://docs.dapr.io/getting-started/install-dapr-cli/
