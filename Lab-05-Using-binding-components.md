@@ -120,3 +120,12 @@ app.MapPost("scheduled", (ILoggerFactory factory, IEventRepository repository) =
 Start the application and check the output from the logger in the output window. It should show a logged call to the scheduled endpoint after the CRON scheduled time expires, which is 1 minute for your configuration.
 
 <img src="https://user-images.githubusercontent.com/5504642/173680430-486bc8e9-93cb-4ccc-a643-53817fd8e431.png" width="500" />
+
+## Finish lab
+You are all done. You have added an SMTP binding to your project. In the next lab you will continue using a Dapr secret store building block.
+
+Stop running your application. In Visual Studio Code and GitHub CodeSpaces you can stop the composition by pressing Ctrl+C in the terminal window. 
+
+<img src="https://user-images.githubusercontent.com/5504642/173663285-5882128d-08a0-48cc-989a-804047beff89.png" width="400" />
+
+In Visual Studio 2022 you can press Shift+F5 or click on the red square stop icon in the Debug toolbar.
