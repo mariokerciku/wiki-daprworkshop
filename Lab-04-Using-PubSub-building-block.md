@@ -30,6 +30,14 @@ builder.Services.AddTransient<IOrderSubmissionService, PubSubOrderSubmissionServ
 
 ## Subscribing to events using Dapr
 In the project for the **ordering** service you also need to add the NuGet package for `Dapr.AspNetCore`. 
+
+In Visual Studio Code or GitHub Codespaces run the following commands from a terminal window:
+```cmd
+cd ordering
+dotnet add package Dapr.AspNetCore
+cd ..
+```
+
 Next, you should add middleware in the HTTP pipeline to unwrap the CloudEvents envelope from the incoming message over the topic. 
 Add a call to `UseCloudEvents` before adding the routing middleware.
 
