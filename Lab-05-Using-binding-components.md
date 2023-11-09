@@ -13,13 +13,15 @@ var app = builder.Build();
 Next, inject the `DaprClient` instance through the `EmailSender` constructor.
 
 ```C#
+    using Dapr.Client; //Add this line
+    [..]
     private readonly ILogger<EmailSender> logger;
-    private readonly DaprClient daprClient;
+    private readonly DaprClient daprClient; //Add this line
 
-    public EmailSender(ILogger<EmailSender> logger, DaprClient daprClient)
+    public EmailSender(ILogger<EmailSender> logger, DaprClient daprClient) //Add DaprClient parameter
     {
         this.logger = logger;
-        this.daprClient = daprClient;
+        this.daprClient = daprClient; //Add this line
     }
 ```
 
