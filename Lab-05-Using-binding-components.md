@@ -75,6 +75,8 @@ The SMTP server implementation for the development environment on your laptop is
 
 Notice how the container is using port 1025 and 1080 inside the container, and is exposed via the same ports outside of the composition. 
 
+> You should now have 9 services defined in your `docker-compose.override.yml` file.
+
 Start the orchestration for the Globoticket solution, with a rebuild of the containers. You need to do this whenever you change code or configuration or add files to any of the .NET projects.
 
 ```cmd
