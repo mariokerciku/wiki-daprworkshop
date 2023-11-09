@@ -73,6 +73,8 @@ After completing the order you should get a confirmation page.
 
 <img src="https://user-images.githubusercontent.com/5504642/173663153-547ef3b5-177b-471e-8116-b2099e844256.png" width="300" />
 
+> Pro tip! Leave this page open, so you can repeat the process of making a purchase without having to fill out the form every time. We will be purchasing a lot of tickets in this workshop.
+
 Examine the logs for your application. Depending on the IDE you are using this will be different. Inspect the output. As an example, try and find the logging of the `ordering` service. After completing your order this should show something similar to this:
 
 <img src="https://user-images.githubusercontent.com/5504642/173663203-68183dd0-6fef-44f6-a150-3ff0f369a6f1.png" width="500" />
