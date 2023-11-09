@@ -125,6 +125,18 @@ eval $(minikube docker-env) # for WSL or bash terminal
 # Install Dapr
 Regardless of your setup, you will need to install the Dapr CLI and initialize the runtime. Dapr is a runtime that is installed through the command-line interface. You can download the CLI installation files from https://docs.dapr.io/getting-started/install-dapr-cli/
 
+Linux or CodeSpaces:
+``` cmd
+wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+```
+
+Windows:
+``` cmd
+$Env:DAPR_INSTALL_DIR = "<your_alt_install_dir_path>"
+$script=iwr -useb https://raw.githubusercontent.com/dapr/cli/master/install/install.ps1; $block=[ScriptBlock]::Create($script); invoke-command -ScriptBlock $block -ArgumentList "", "$Env:DAPR_INSTALL_DIR"
+
+```
+
 <img src="https://user-images.githubusercontent.com/5504642/173639631-00402a9a-0c86-4e07-a10a-7138689a0fc7.png" width="300" />
 
 Install the Dapr CLI and check that it works correctly by typing `dapr` in a terminal window.
