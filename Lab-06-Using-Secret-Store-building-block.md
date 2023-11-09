@@ -22,7 +22,13 @@ First, let's add the NuGet package for Dapr provided configuration to the Catalo
 <PackageReference Include="Dapr.Extensions.Configuration" Version="1.11.0" />
 ```
 
-to the `<ItemGroup>` element in the `catalog.csproj` file that contains the other NuGet package references. Alternatively, you can run `dotnet add package Dapr.Extensions.Configuration` again from the `catalog` folder.
+to the `<ItemGroup>` element in the `catalog.csproj` file that contains the other NuGet package references. Alternatively, you can run `dotnet add package Dapr.Extensions.Configuration` again from the `catalog` folder:
+
+```cmd
+cd catalog
+dotnet add package Dapr.AspNetCore
+cd ..
+```
 
 In the Program.cs file add the following block before the call to `Configure<CatalogOptions>`:
 
