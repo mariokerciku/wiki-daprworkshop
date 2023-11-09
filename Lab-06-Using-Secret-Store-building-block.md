@@ -33,7 +33,11 @@ cd ..
 In the Program.cs file add the following block before the call to `Configure<CatalogOptions>`:
 
 ```C#
-builder.Services.Configure<CatalogOptions>(builder.Configuration); 
+//Add using
+using Dapr.Client;
+
+[..]
+
 //Add these lines:
 builder.WebHost.ConfigureAppConfiguration(config =>
 {
@@ -44,6 +48,7 @@ builder.WebHost.ConfigureAppConfiguration(config =>
     };
     config.AddDaprSecretStore("secretstore", secretDescriptors, daprClient);
 });
+builder.Services.Configure<CatalogOptions>(builder.Configuration); 
 ```
 
 Notice how the call to `AddDaprSecretStore` specifies the name of the building block `secretstore` and uses a list of explicit secret descriptors to fetch the secrets from the store. In this case the list is a single value for `catalogconnectionstring`.
