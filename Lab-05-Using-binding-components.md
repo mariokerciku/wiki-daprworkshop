@@ -117,7 +117,7 @@ app.MapPost("scheduled", (ILoggerFactory factory, IEventRepository repository) =
 });
 ```
 
-Start the application and check the output from the logger in the output window. It should show a logged call to the scheduled endpoint after the CRON scheduled time expires, which is 1 minute for your configuration.
+Start the application and check the output from the logger in the output window. It should show a logged call to the scheduled endpoint after the CRON scheduled time expires, which is 5 minutes for your configuration.
 
 <img src="https://user-images.githubusercontent.com/5504642/173680430-486bc8e9-93cb-4ccc-a643-53817fd8e431.png" width="500" />
 
