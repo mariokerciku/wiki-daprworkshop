@@ -6,7 +6,7 @@ The implementation for `SendEmailForOrder` inside the `ordering/Services/EmailSe
 Since bindings are used and called via the `DaprClient`, we need to register the `DaprClient` in the dependency injection system at startup. Add a call to `AddDaprClient` in the `Program.cs` class.
 
 ```C#
-builder.Services.AddDaprClient(); //Add this line
+builder.Services.AddDaprClient(); // Add this line
 var app = builder.Build();
 ```
 
@@ -16,12 +16,12 @@ Next, inject the `DaprClient` instance through the `EmailSender` constructor.
     using Dapr.Client; //Add this line
     [..]
     private readonly ILogger<EmailSender> logger;
-    private readonly DaprClient daprClient; //Add this line
+    private readonly DaprClient daprClient; // Add this line
 
     public EmailSender(ILogger<EmailSender> logger, DaprClient daprClient) //Add DaprClient parameter
     {
         this.logger = logger;
-        this.daprClient = daprClient; //Add this line
+        this.daprClient = daprClient; // Add this line
     }
 ```
 
