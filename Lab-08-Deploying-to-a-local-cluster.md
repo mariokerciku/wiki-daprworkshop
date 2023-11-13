@@ -148,7 +148,7 @@ export REDIS_PASSWORD=$(kubectl get secret --namespace default daprworkshop-redi
 In PowerShell you need to do a bit more work to decode the base64 encoded password:
 
 ```powershell
-$REDIS_PASSWORD = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String(kubectl get secret --namespace default daprworkshop-redis -o jsonpath="{.data.redis-password})
+$REDIS_PASSWORD = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String(kubectl get secret --namespace default daprworkshop-redis -o jsonpath="{.data.redis-password}")
 ```
 
 Verify that the Redis password was set correctly by calling `printenv REDIS_PASSWORD` for Linux or `$env:REDIS_PASSWORD` for PowerShell.
