@@ -27,6 +27,7 @@ az login
 az account list
 ```
 
+If the Azure login fails in GitHub Codespaces, you can use `az login --use-device-code`.
 Locate the subscription you want to use. If it does not have `"isDefault": true` listed you need to change the current subscription, by running the following command. Replace the placeholder with your subscription ID:
 
 ```cmd
