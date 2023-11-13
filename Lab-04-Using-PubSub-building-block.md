@@ -55,6 +55,8 @@ app.MapControllers();
 app.MapSubscribeHandler(); // Add this line
 ```
 
+> Make sure you have added these changes to the *`ordering`* project, not the `frontend` project by accident.
+
 With these preparations, the only thing left to do is add a mapped subscription handler in a controller class. Open the `ordering/Controllers/OrderController` class and find the `Submit` method. Decorate the method with an additional attribute to indicate this is a subscription handler. It should be called whenever the `pubsub` component detects a new message on the `orders` topic. For this, include the `Topic` attribute:
 
 ```C#
