@@ -31,7 +31,7 @@ With these changes in place we can start using the state store building block. A
 ## Check the volume mount for the state store.
 We're using a redis cache container for persistance. by default a container does not store it's state after restarting it. So what we can do is add a volume mount to the state store container so the redis cache can store it's data outside of it's container and the data will survive a restart.
 
-At the bottom of the Redis definition in the `docker-compose.yaml` add a volume mount to a folder called `data`
+At the bottom of the Redis definition in the `docker-compose.override.yaml` add a volume mount to a folder called `data`
 ```
   redis:
     container_name: "redis"
