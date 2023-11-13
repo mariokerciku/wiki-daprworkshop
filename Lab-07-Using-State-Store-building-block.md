@@ -26,7 +26,7 @@ builder.Services.AddTransient<IShoppingBasketService, DaprClientStateStoreShoppi
 Inspect the implementation for `DaprClientStateStoreShoppingBasket` and `StateStoreBasket`.
 
 ## Adding building block definition
-With these changes in place we can start using the state store building block. As before you wil also need to copy the component definition from `lab-resources` to the `components/docker-compose` folder. The file is named `statestore.yaml`.
+With these changes in place we can start using the state store building block. As before you will also need to copy the component definition from `lab-resources` to the `components/docker-compose` folder. The file is named `statestore.yaml`.
 
 ## Check the volume mount for the state store.
 We're using a redis cache container for persistance. by default a container does not store it's state after restarting it. So what we can do is add a volume mount to the state store container so the redis cache can store it's data outside of it's container and the data will survive a restart.
