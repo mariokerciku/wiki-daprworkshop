@@ -40,21 +40,6 @@ Create a resource group in your subscription
 az group create -n $RESOURCE_GROUP -l $LOCATION
 ```
 
-We are going to use the preview features of `OIDC issuer` and `Pod Identity` in Azure. You will have to register these features in your Azure subscription.
-
-```cmd
-az feature register --name EnableOIDCIssuerPreview --namespace Microsoft.ContainerService #this is deprecated and no longer needed
-az feature register --name EnablePodIdentityPreview --namespace Microsoft.ContainerService
-```
-
-The registration might take some time. You can check the status of the registration by running:
-
-```cmd
-az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/Enable')].{Name:name,State:properties.state}"
-```
-
-When the state for both EnableOIDCIssuerPreview and EnablePodIdentityPreview is `registered` you can continue with the next step.
-
 Include the extension for preview features of AKS in the Azure CLI:
 
 ```cmd
@@ -62,22 +47,22 @@ az extension add --name aks-preview
 ```
 
 ## Install AKS cluster
-You are now ready to install a real Azure based Kubernetes cluster. Execute the followin command to create an AKS cluster with three features enabled:
+You are now ready to install a real Azure based Kubernetes cluster. Execute the following command to create an AKS cluster with three features enabled:
 - Managed Identity - Makes the cluster nodes run as a specific managed service principal identity 
 - OpenIDConnect Issuer - Adds a OIDC identity provider to issue identity tokens from within the cluster
-- Pod Identity - Allows pods to run with a specific managed service principal identity 
+- Workload Identity - Allows workloads in a pod to run with a specific managed service principal identity 
 
 ```cmd
 $CLUSTER_NAME = "DaprWorkshopCluster" # PowerShell
-CLUSTER_NAME=DaprWorkshopCluster # Bash
+CLUSTER_NAME=DaprWorkshopCluster      # Bash
 
-az aks create --resource-group $RESOURCE_GROUP --location $LOCATION --name $CLUSTER_NAME --node-count 1 --enable-addons http_application_routing --generate-ssh-keys --enable-managed-identity --enable-oidc-issuer --enable-pod-identity --network-plugin azure 
+az aks create --resource-group $RESOURCE_GROUP --location $LOCATION --name $CLUSTER_NAME --node-count 1 --enable-addons web_application_routing --generate-ssh-keys --enable-managed-identity --enable-oidc-issuer --enable-workload-identity --network-plugin azure 
 ```
 
 You can read some additional information on these features here:
-- https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity 
-- https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#oidc-issuer-preview 
-- https://docs.microsoft.com/en-us/azure/aks/http-application-routing
+- https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview
+- https://learn.microsoft.com/en-us/azure/aks/use-oidc-issuer
+- https://learn.microsoft.com/en-us/azure/aks/app-routing
 
 At this point your cluster is going to be created. This will take some time and you might want to take a little break from the labs at this point. 
 
