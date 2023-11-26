@@ -187,3 +187,6 @@ kubectl get pods
 kubectl logs <instance-name-of-catalog-pods>
 ```
 Check  whether the logs indicate a connection string that has `Key vault` in it.
+
+## Finish lab
+You are all done. You have added Azure components to your project. Without changing your code, you are now using production-ready cloud services instead of local containers.
