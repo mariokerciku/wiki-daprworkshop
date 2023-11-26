@@ -57,13 +57,19 @@ The original value for the event catalog connection string is located in `appset
 
 Run the application again to check that the new value from the secrets file of the store is actually used.
 
-You should see the output in the log of the catalog service after refreshing the home page of the GloboTicket website.
+Fetch events from the catalog api to trigger a log message. Connect to the forwarded port 5003 in a separate browser tab, using the 'ports' tab in CodeSpaces.
+For example:
+```
+https://cuddly-parakeet-5vdqr15r7dr3pgc6-5003.app.github.dev/event/
+```
+
+You should see the output in the log of the catalog service:
 
 ```
 info: GloboTicket.Catalog.Repositories.EventRepository[0]
       Connection string Event Catalog DB Connection string from local file
 ```
-
+You can also load or refresh the home page of the GloboTicket website
 
 ## Finish lab
 You are all done. You have added a secret store to your project. In the next lab you will continue using a Dapr state store building block.
