@@ -12,6 +12,8 @@ kubectl config get-contexts
 The output various per cluster type. In Minikube the output resembles:
 <img src="https://user-images.githubusercontent.com/5504642/173692060-36dab09d-8ef9-4279-a6b1-125a5c4afc9e.png" width="700" />
 
+> Tip: If you don't see minikube in your CodeSpaces, you may need to run `minikube start` and `eval $(minikube docker-env)` again.
+
 Kubernetes in Docker Desktop:
 <img src="https://user-images.githubusercontent.com/5504642/173692846-0da66222-e740-42ed-aae8-99e40340c8ba.png" width="650" />
 
