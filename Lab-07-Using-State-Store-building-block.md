@@ -31,8 +31,8 @@ With these changes in place we can start using the state store building block. A
 ## Check the volume mount for the state store.
 We're using a redis cache container for persistance. by default a container does not store it's state after restarting it. So what we can do is add a volume mount to the state store container so the redis cache can store it's data outside of it's container and the data will survive a restart.
 
-At the bottom of the Redis definition in the `docker-compose.override.yaml` add a volume mount to a folder called `data`
-```
+At the bottom of the Redis definition in the `docker-compose.override.yaml` add a volume mount to a folder named `data` to the `redis` service:
+``` yaml
   redis:
     container_name: "redis"
     image: "redis:7.2-alpine"
@@ -44,8 +44,22 @@ At the bottom of the Redis definition in the `docker-compose.override.yaml` add 
       - "./data:/data"   # and this one
 ```
 
-Now also create a `data` folder in the root of your solution. This is used in the volume mount so redis can store it's files here. It will create a `dump.rdb` file regularly and when stopping the redis cache. 
+Now also create a `data` folder in the root of your solution. This is used in the volume mount so redis can store it's files here. It will create a `dump.rdb` file regularly and when stopping the redis cache:
+
+```
+mkdir data 
+```
 
 ### Testing the persistence of the state store.
 
 Now you can test your new implementation and see if it is able to store your shopping basket. Try stopping the composition and starting it again to see whether it survives a restart. The state of the shopping basket should be persisted.
+
+
+## Finish lab
+You are all done. You have added a state store to your project. In the next lab you will deploy your solution to a Kubernetes cluster.
+
+Stop running your application. In Visual Studio Code and GitHub CodeSpaces you can stop the composition by pressing Ctrl+C in the terminal window. 
+
+<img src="https://user-images.githubusercontent.com/5504642/173663285-5882128d-08a0-48cc-989a-804047beff89.png" width="400" />
+
+In Visual Studio 2022 you can press Shift+F5 or click on the red square stop icon in the Debug toolbar.
