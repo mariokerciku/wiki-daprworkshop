@@ -15,6 +15,7 @@ The output various per cluster type. In Minikube the output resembles:
 > Tip: If you don't see minikube in your CodeSpaces, you may need to run `minikube start` and `eval $(minikube docker-env)` again.
 
 Kubernetes in Docker Desktop:
+
 <img src="https://user-images.githubusercontent.com/5504642/173692846-0da66222-e740-42ed-aae8-99e40340c8ba.png" width="650" />
 
 Also, you can check using the Visual Studio Code extension for Kubernetes to see if you are connected correctly.
