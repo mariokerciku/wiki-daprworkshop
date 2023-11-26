@@ -281,3 +281,12 @@ Examine the output and check the value for the `EXTERNAL-IP` of the `frontend`. 
 kubectl port-forward svc/frontend 8081:8080
 ```
 Try to visit the website at http://localhost:8081 if you create the forward to the frontend service port. In GitHub Codespaces you need to go to the Ports tab to create a tunnel to the Kubernetes cluster. 
+
+## Finish lab
+You are all done. You have deployed your project to a local Kubernetes cluster. In the next lab you will deploy your solution to a Kubernetes cluster in Azure.
+
+Run the following command to clean up and reset your cluster:
+``` cmd
+minikube delete
+minikube start
+```
