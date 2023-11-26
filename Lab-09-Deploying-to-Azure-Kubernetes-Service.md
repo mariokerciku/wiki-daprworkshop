@@ -254,3 +254,6 @@ kubectl get svc frontend -o jsonpath="{.status.loadBalancer.ingress[*].ip}"
 
 Visit the website URL at the IP address you found and using port 8080, for example `http://<your-cluster-ipaddress>:8080/`.
 If all went well, you should be treated with a working GloboTicket website. In case of errors, examine the logs of the pods and its containers to find out what went wrong and correct it.
+
+## Finish lab
+You are all done. You have deployed your project to a new AKS cluster in Azure, and you deployed container images to a container registry in Azure. In the next lab you will use more Azure services, for example a Storage Account for state storage and Service Bus for Pub/Sub messaging.
