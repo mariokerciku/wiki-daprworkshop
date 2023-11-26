@@ -26,7 +26,7 @@ to the `<ItemGroup>` element in the `catalog.csproj` file that contains the othe
 
 ```cmd
 cd catalog
-dotnet add package Dapr.AspNetCore
+dotnet add package Dapr.Extensions.Configuration
 cd ..
 ```
 
