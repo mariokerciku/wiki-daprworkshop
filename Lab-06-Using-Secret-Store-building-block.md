@@ -34,7 +34,7 @@ In the Program.cs file add the following block before the call to `Configure<Cat
 
 ```C#
 //Add using
-using Dapr.Client;
+using Dapr.Extensions.Configuration;
 
 [..]
 
