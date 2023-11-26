@@ -53,13 +53,6 @@ builder.Services.Configure<CatalogOptions>(builder.Configuration);
 
 Notice how the call to `AddDaprSecretStore` specifies the name of the building block `secretstore` and uses a list of explicit secret descriptors to fetch the secrets from the store. In this case the list is a single value for `catalogconnectionstring`.
 
-Also include the `Dapr.Client` and `Dapr.Extensions.Configuration` namespaces in the code.
-
-```C#
-using Dapr.Client;
-using Dapr.Extensions.Configuration;
-```
-
 The original value for the event catalog connection string is located in `appsettings.json`, but could also have been placed in the `secrets.json` file for User Secrets. These configuration sources have already been defined through `WebApplication.CreateBuilder`. The call to `ConfigureAppConfiguration` will add an additional configuration source for the secret store and, since it is defined last, its values will override the previous values from `appsettings.json`, `appsettings.<environment>.json` and `<usersecretsfolder>/secrets.json`.
 
 Run the application again to check that the new value from the secrets file of the store is actually used.
