@@ -128,9 +128,28 @@ kubectl port-forward svc/maildev 8088:1080
 ## State store and pub/sub with Redis
 Installing Redis in a Kubernetes cluster is easiest with Helm.
 
-Refer to [Lab 0](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-0:-Preparing-your-machine) for installation of Helm with Chocolatey
+Check if helm is installed by running this command:
+```cmd
+helm --help
+
+The Kubernetes package manager
+
+Common actions for Helm:
+
+- helm search:    search for charts
+- helm pull:      download a chart to your local directory to view
+- helm install:   upload the chart to Kubernetes
+- helm list:      list releases of charts
+[..] 
+```
+
+Refer to [Lab 0](https://github.com/XpiritCommunityEvents/DaprWorkshop/wiki/Lab-0:-Preparing-your-machine) for installation of Helm with Chocolatey on Windows
 ```cmd
 choco install kubernetes-helm
+```
+Installing Helm on Linux:
+```cmd
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
 
 ```cmd
