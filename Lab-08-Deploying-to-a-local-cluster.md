@@ -183,7 +183,7 @@ At this point you are ready to register the Dapr components. For now we will use
 The `lab-resources` directory contains a subdirectory called `kubernetes`. Copy the directory into the `components` folder located at the root of your Git repository. Next, apply the Kubernetes manifest files.
 
 ```cmd
-cd components/kubernetes
+cd lab-resources/kubernetes
 kubectl apply -f ./cron.yaml
 ```
 
@@ -194,7 +194,7 @@ kubectl apply -f ./email.yaml
 ```
 
 ## Statestore and pubsub
-First, change passwords in `components/kubernetes/redis-statestore.yaml` and `components/kubernetes/redis-pubsub.yaml` to Redis password from the last step in the Redis installation.
+First, change passwords in `lab-resources/kubernetes/redis-statestore.yaml` and `lab-resources/kubernetes/redis-pubsub.yaml` to Redis password from the last step in the Redis installation.
 
 ```yaml
 apiVersion: dapr.io/v1alpha1
@@ -219,9 +219,10 @@ kubectl apply -f ./redis-pubsub.yaml
 kubectl apply -f ./redis-statestore.yaml
 ```
 
-Finally, deploy the Dapr configuration for this application: 
+Finally, deploy the Dapr configuration for this application and return the terminal to the working folder: 
 ```cmd
 kubectl apply -f ./appconfig.yaml
+cd ../..
 ```
 
 This would be a good time to look at the Dapr dashboard again.
