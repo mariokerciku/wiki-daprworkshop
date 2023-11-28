@@ -110,7 +110,7 @@ dapr init -k --wait
 
 ![image](https://user-images.githubusercontent.com/5504642/174283359-1c164950-0fc3-49e4-9bee-f721ae6991e9.png)
 
-Again, you can use the dashboard to see whether the Dapr control plane was installed and initialized successfully by running the dashboard.
+Again, you can use the dashboard to see whether the Dapr control plane was installed and initialized successfully by running the dashboard in a separate terminal.
 ```cmd
 dapr dashboard -k -p 8180
 ```
@@ -125,7 +125,7 @@ dapr status -k
 ## Installing dependencies 
 With the cluster setup, it is time to install the dependencies for Dapr and our application. Go through similar steps as for your local cluster to install the dependencies to the AKS cluster. Below you can find the short instructions. You can refer to the previous lab for details. 
 
-- Distributed tracing with Zipkin
+- Distributed tracing with Zipkin in a separate terminal.
 ```cmd
 kubectl create deployment zipkin --image openzipkin/zipkin
 kubectl expose deployment zipkin --type ClusterIP --port 9411
@@ -138,10 +138,12 @@ kubectl create deployment maildev --image maildev/maildev
 - Secret for database
 ```cmd
 kubectl create secret generic catalogconnectionstring --from-literal=catalogconnectionstring="Event Catalog Connection String from Kubernetes"
-kubectl apply -f ./kubernetes-secretstore.yaml
+kubectl apply -f lab-resources/kubernetes/kubernetes-secretstore.yaml
 ```
 - State store and pub/sub with Redis
 ```cmd
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
 helm install daprworkshop-redis bitnami/redis
 ```
 This time you will not need to get the password from the Redis installation. Instead we will use the Kubernetes secret that was automatically created and refer to that in the component definitions of `statestore` and `pubsub` later on.
