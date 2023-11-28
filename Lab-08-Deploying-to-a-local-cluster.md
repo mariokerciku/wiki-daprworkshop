@@ -222,7 +222,6 @@ kubectl apply -f ./redis-statestore.yaml
 Finally, deploy the Dapr configuration for this application and return the terminal to the working folder: 
 ```cmd
 kubectl apply -f ./appconfig.yaml
-cd ../..
 ```
 
 This would be a good time to look at the Dapr dashboard again.
@@ -242,18 +241,20 @@ You are all set up to start deploying the pods for each of the 3 containers `ord
 Build a `Release` version of the code and create the Docker images. 
 
 ```cmd
-dotnet build -c Release globoticket-dapr.sln
+dotnet build -c Release ../../globoticket-dapr.sln
 ```
 An alternative would be to use Docker Compose to perform the build, based on the `docker-compose.yml` and `docker-compose.override.yml` files:
 ```cmd
-docker-compose build 
+cd ../..
+docker-compose build
+cd lab-resources/kubernetes
 ```
 Remember that you can combine building and starting (upping) a composition using `docker-compose up --build`.
 
 Building the composition will build three container images with a full release build. These can be deployed to the cluster. Debug builds creates images 
 
 ## Deploying pods 
-The final step to get to a complete solution is to tag the container images that were created with a registry name at the front. To indicate that we will get the images from the local image store, we will name the registry `local`.
+The final step to get to a complete solution is to tag the container images that were created with a container registry name prefix. To indicate that we will get the images from the local image store, we will name the registry `local`.
 Examine the contents of `catalog.yaml`:
 
 ```
