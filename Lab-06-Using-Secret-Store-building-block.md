@@ -19,7 +19,7 @@ The contents of the secrets.json file are:
 First, let's add the NuGet package for Dapr provided configuration to the Catalog project. The package is called `Dapr.Extensions.Configuration` and can be added through the UI of Visual Studio or by adding
 
 ```xml
-<PackageReference Include="Dapr.Extensions.Configuration" Version="1.11.0" />
+<PackageReference Include="Dapr.Extensions.Configuration" Version="1.12.0" />
 ```
 
 to the `<ItemGroup>` element in the `catalog.csproj` file that contains the other NuGet package references. Alternatively, you can run `dotnet add package Dapr.Extensions.Configuration` again from the `catalog` folder:
