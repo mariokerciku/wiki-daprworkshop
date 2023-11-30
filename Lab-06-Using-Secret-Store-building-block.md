@@ -39,14 +39,14 @@ using Dapr.Extensions.Configuration;
 [..]
 
 //Add these lines:
-builder.WebHost.ConfigureAppConfiguration(config =>
+builder.Configuration.AddDaprSecretStore(config =>
 {
-    var daprClient = new DaprClientBuilder().Build();
-    var secretDescriptors = new List<DaprSecretDescriptor>
+    config.SecretDescriptors = new List<DaprSecretDescriptor>
     {
         new DaprSecretDescriptor("catalogconnectionstring")
     };
-    config.AddDaprSecretStore("secretstore", secretDescriptors, daprClient);
+    config.Store = "secretstore";
+    config.Client = new DaprClientBuilder().Build();
 });
 builder.Services.Configure<CatalogOptions>(builder.Configuration); 
 ```
